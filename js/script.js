@@ -1,9 +1,23 @@
 $(function(){
     $('.main_menu>li').eq(2).hover(
-      function(){$('.sub_menu').stop().slideDown();
+      function(){
+        $('header .sub_menu').stop().slideDown();
       },
-      function(){$('.sub_menu').stop().slideUp();
-    })
+      function(){
+        setTimeout(() => {
+          if (!$('header .sub_menu:hover').length){
+            $('header .sub_menu').slideUp();
+          }
+        }, 100);
+      });
+
+      $('.sub_menu').hover(
+        function(){
+          $(this).stop().slideDown();
+        },
+        function(){
+          $(this).slideUp();
+        });
 
     const div = document.querySelector('header');
     const text = div.querySelectorAll('p');
