@@ -1,10 +1,10 @@
 $(function(){
-    // $('.main_menu>li').mouseenter(function(){
-    //     $('header').find('.sub_menu').stop().slideDown('main');
-    // })
-    // $('.main_menu>li').mouseleave(function(){
-    //     $('header').find('.sub_menu').stop().slideUp();
-    // })
+    $('.main_menu>li').eq(2).mouseenter(function(){
+        $('header').find('.sub_menu').stop().slideDown('main');
+    })
+    $('.main_menu>li').eq(2).mouseleave(function(){
+        $('header').find('.sub_menu').stop().slideUp();
+    })
 
     const div = document.querySelector('header');
     const text = div.querySelectorAll('p');
