@@ -27,22 +27,3 @@ $(function(){
 
     resizeObserver.observe(div);
 })
-
-function applyDynamicPaddingFromDataAttr() {
-  document.querySelectorAll('[data-padding]').forEach(el => {
-    const [yRatio, xRatio] = el.dataset.padding.split(' ').map(parseFloat);
-    const height = el.offsetHeight;
-    const width = el.offsetWidth;
-
-    el.style.paddingTop = `${height * yRatio}px`;
-    el.style.paddingBottom = `${height * yRatio}px`;
-    el.style.paddingLeft = `${width * xRatio}px`;
-    el.style.paddingRight = `${width * xRatio}px`;
-  });
-}
-
-window.addEventListener('load', () => {
-  applyDynamicPaddingFromDataAttr();
-  setTimeout(applyDynamicPaddingFromDataAttr, 100);
-});
-window.addEventListener('resize', applyDynamicPaddingFromDataAttr);
