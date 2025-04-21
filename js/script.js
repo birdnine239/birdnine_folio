@@ -1,9 +1,8 @@
 $(function(){
-    $('.main_menu>li').eq(2).mouseenter(function(){
-        $('header').find('.sub_menu').stop().slideDown('main');
-    })
-    $('.main_menu>li').eq(2).mouseleave(function(){
-        $('header').find('.sub_menu').stop().slideUp();
+    $('.main_menu>li').eq(2).hover(
+      function(){$('.sub_menu').stop().slideDown();
+      },
+      function(){$('.sub_menu').stop().slideUp();
     })
 
     const div = document.querySelector('header');
