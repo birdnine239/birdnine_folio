@@ -39,4 +39,35 @@ $(function(){
     });
 
     resizeObserver.observe(div);
+
+    $('header a').click(function(e){
+      var targetPage = $(this).attr('href'); // 클릭한 링크의 href 값 가져오기
+
+      if (targetPage === './index.html'){ // 홈 클릭 시 원래 화면으로 복귀
+        e.preventDefault();
+        window.location.href = './index.html';
+        return;
+      } 
+      
+      if (!targetPage || targetPage.trim() === ''){
+          e.preventDefault();
+          $('.show').hide();
+      } else {
+          e.preventDefault(); // 기본 이동 방지
+          $('.show').hide(); // 기존 콘텐츠 숨기기
+          $('header').show();
+
+          if ($('main').find('iframe').length){
+            $('main').find('iframe').attr('src', targetPage);
+          } else {
+            $('main').html('<iframe src="' + targetPage + '" scrolling="no" onload="adjustIframeHeight(this)"></iframe>'); // iframe 삽입
+          }
+          $('main').show();
+      }
+  });
 })
+
+// iframe의 높이를 자동 조정하는 함수
+function adjustIframeHeight(iframe){
+  iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+}
