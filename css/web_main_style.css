@@ -11,6 +11,8 @@ body{
     height: 100vh;
     margin: 0 auto;
     overflow-x: hidden;
+    background-image: url(../img/logo_opacity.png);
+    background-size: 5%;
 }
 
 header{
@@ -81,10 +83,15 @@ header .sub_menu li a span{
 
 main{
     width: 100%;
-    height: 100%;
+    height: auto;
     margin: 0 auto;
     background-color: #d9d9d9;
     display: none;
+}
+main iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .show{
