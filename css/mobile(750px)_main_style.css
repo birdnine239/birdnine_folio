@@ -46,8 +46,6 @@ header .menu_img img{
 }
 
 header .mobile_menu{
-/*     width: 235.84px; */
-    height: auto;
     list-style: none;
     padding: 0 15px;
     box-sizing: border-box;
