@@ -22,7 +22,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding: 15px 100px;
+    padding: 15px 5%;
     box-sizing: border-box;
     background-color: #d9d9d9;
     position: relative;
