@@ -22,7 +22,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding: 15px 5%;
+    padding: 15px 6.39%;
     box-sizing: border-box;
     background-color: #d9d9d9;
     position: relative;
@@ -64,7 +64,7 @@ header .sub_menu{
     position: absolute;
     z-index: 2;
     top: 90%;
-    right: 15.33px;
+    right: 1%;
     display: none;
 }
 header .sub_menu li a{
