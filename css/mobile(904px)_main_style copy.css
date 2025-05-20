@@ -86,9 +86,10 @@ header .mobile_menu .mobile_sub_menu li a span{
 
 main{
     width: 100%;
-    height: auto;
     margin: 0 auto;
+    padding: 15px 30px 30px 30px;
     background-color: #d9d9d9;
+    box-sizing: border-box;
     display: none;
 }
 
