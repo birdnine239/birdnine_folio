@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-stretch: condensed;
+    letter-spacing: -0.06em;
+}
+
+body{
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: hidden;
+}
