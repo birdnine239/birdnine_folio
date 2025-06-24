@@ -135,15 +135,40 @@ function closeEbookPopup() {
   $('#ebookIframe').attr('src', '');
 }
 
-// 모바일 호환을 위한 클릭 이벤트
-document.querySelectorAll('.e-book').forEach(function (item) {
-  item.addEventListener('click', function () {
-    // 다른 항목 active 해제
-    document.querySelectorAll('.e-book.active').forEach(function (el) {
-      if (el !== item) el.classList.remove('active');
-    });
+// 팝업 제어용 함수
+function openEbookPopup(path) {
+  const iframe = document.getElementById('ebookIframe');
+  iframe.src = path;
+  document.getElementById('ebookPopupOverlay').style.display = 'flex';
+}
 
-    // 현재 항목 toggle
-    item.classList.toggle('active');
+document.querySelectorAll('.e-book').forEach(function (item) {
+  item.addEventListener('click', function (e) {
+    const isActive = item.classList.contains('active');
+
+    // title_hover 내부를 클릭하면 아무 것도 하지 않음
+    if (e.target.closest('.title_hover')) return;
+
+    if (!isActive) {
+      // 다른 active 제거
+      document.querySelectorAll('.e-book.active').forEach(el => {
+        if (el !== item) el.classList.remove('active');
+      });
+      item.classList.add('active'); // 첫 클릭: title_hover 표시
+    } else {
+      // 두 번째 클릭: 팝업 열기
+      const ebookPath = item.getAttribute('data-ebook');
+      if (ebookPath) {
+        openEbookPopup(ebookPath);
+      }
+    }
   });
+});
+
+// 팝업 바깥 클릭 시 닫기
+document.getElementById('ebookPopupOverlay').addEventListener('click', function (e) {
+  if (e.target.id === 'ebookPopupOverlay') {
+    this.style.display = 'none';
+    document.getElementById('ebookIframe').src = '';
+  }
 });
