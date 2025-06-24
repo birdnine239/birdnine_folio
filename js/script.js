@@ -94,23 +94,23 @@ $(function(){
   });
 
   // popup
-  // $(document).ready(function () {
-  //   $('.e-book').on('click', function (e) {
-  //     e.preventDefault();
-  //     const ebookUrl = $(this).data('ebook');
-  //     if (ebookUrl) {
-  //       $('#ebookIframe').attr('src', ebookUrl);
-  //       $('#ebookPopupOverlay').fadeIn();
-  //     }
-  //   });
+  $(document).ready(function () {
+    $('.e-book').on('click', function (e) {
+      e.preventDefault();
+      const ebookUrl = $(this).data('ebook');
+      if (ebookUrl) {
+        $('#ebookIframe').attr('src', ebookUrl);
+        $('#ebookPopupOverlay').fadeIn();
+      }
+    });
 
-  //   $('#ebookPopupOverlay').on('click', function (e) {
-  //     if (e.target.id === 'ebookPopupOverlay') {
-  //       $(this).fadeOut();
-  //       $('#ebookIframe').attr('src', '');
-  //     }
-  //   });  
-  // });
+    $('#ebookPopupOverlay').on('click', function (e) {
+      if (e.target.id === 'ebookPopupOverlay') {
+        $(this).fadeOut();
+        $('#ebookIframe').attr('src', '');
+      }
+    });  
+  });
 
   //포트폴리오 swiper
   var swiper = new Swiper(".mySwiper", {
