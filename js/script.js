@@ -133,4 +133,17 @@ function adjustIframeHeight(iframe){
 function closeEbookPopup() {
   $('#ebookPopupOverlay').fadeOut();
   $('#ebookIframe').attr('src', '');
-} 
+}
+
+// 모바일 호환을 위한 클릭 이벤트
+document.querySelectorAll('.e-book').forEach(function (item) {
+  item.addEventListener('click', function () {
+    // 다른 항목 active 해제
+    document.querySelectorAll('.e-book.active').forEach(function (el) {
+      if (el !== item) el.classList.remove('active');
+    });
+
+    // 현재 항목 toggle
+    item.classList.toggle('active');
+  });
+});
