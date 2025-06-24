@@ -93,23 +93,42 @@ $(function(){
     });
   });
 
-  // popup
-  $(document).ready(function () {
-    $('.e-book').on('click', function (e) {
-      e.preventDefault();
-      const ebookUrl = $(this).data('ebook');
-      if (ebookUrl) {
-        $('#ebookIframe').attr('src', ebookUrl);
-        $('#ebookPopupOverlay').fadeIn();
+  // 팝업 열기 함수
+  function openEbookPopup(path) {
+    const iframe = document.getElementById('ebookIframe');
+    iframe.src = path;
+    document.getElementById('ebookPopupOverlay').style.display = 'flex';
+  }
+
+  // 팝업 닫기 이벤트
+  document.getElementById('ebookPopupOverlay').addEventListener('click', function (e) {
+    if (e.target.id === 'ebookPopupOverlay') {
+      this.style.display = 'none';
+      document.getElementById('ebookIframe').src = '';
+    }
+  });
+
+  // e-book 클릭 처리 (모바일/PC 분기)
+  document.querySelectorAll('.e-book').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      if (e.target.closest('.title_hover')) return;
+
+      const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+      const isActive = item.classList.contains('active');
+
+      if (isTouch) {
+        if (!isActive) {
+          document.querySelectorAll('.e-book.active').forEach(el => el.classList.remove('active'));
+          item.classList.add('active');
+        } else {
+          const ebookPath = item.getAttribute('data-ebook');
+          if (ebookPath) openEbookPopup(ebookPath);
+        }
+      } else {
+        const ebookPath = item.getAttribute('data-ebook');
+        if (ebookPath) openEbookPopup(ebookPath);
       }
     });
-
-    $('#ebookPopupOverlay').on('click', function (e) {
-      if (e.target.id === 'ebookPopupOverlay') {
-        $(this).fadeOut();
-        $('#ebookIframe').attr('src', '');
-      }
-    });  
   });
 
   //포트폴리오 swiper
@@ -134,41 +153,3 @@ function closeEbookPopup() {
   $('#ebookPopupOverlay').fadeOut();
   $('#ebookIframe').attr('src', '');
 }
-
-// 팝업 제어용 함수
-function openEbookPopup(path) {
-  const iframe = document.getElementById('ebookIframe');
-  iframe.src = path;
-  document.getElementById('ebookPopupOverlay').style.display = 'flex';
-}
-
-document.querySelectorAll('.e-book').forEach(function (item) {
-  item.addEventListener('click', function (e) {
-    const isActive = item.classList.contains('active');
-
-    // title_hover 내부를 클릭하면 아무 것도 하지 않음
-    if (e.target.closest('.title_hover')) return;
-
-    if (!isActive) {
-      // 다른 active 제거
-      document.querySelectorAll('.e-book.active').forEach(el => {
-        if (el !== item) el.classList.remove('active');
-      });
-      item.classList.add('active'); // 첫 클릭: title_hover 표시
-    } else {
-      // 두 번째 클릭: 팝업 열기
-      const ebookPath = item.getAttribute('data-ebook');
-      if (ebookPath) {
-        openEbookPopup(ebookPath);
-      }
-    }
-  });
-});
-
-// 팝업 바깥 클릭 시 닫기
-document.getElementById('ebookPopupOverlay').addEventListener('click', function (e) {
-  if (e.target.id === 'ebookPopupOverlay') {
-    this.style.display = 'none';
-    document.getElementById('ebookIframe').src = '';
-  }
-});
