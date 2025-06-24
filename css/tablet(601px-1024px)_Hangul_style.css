@@ -1,4 +1,4 @@
-*{
+T*{
     margin: 0;
     padding: 0;
     line-height: 1;
@@ -61,7 +61,7 @@ main .swiper .swiper-wrapper .swiper-slide .e-book .title_hover{
     flex-direction: column;
     justify-content: space-between;
 }
-main .swiper .swiper-wrapper .swiper-slide .e-book:hover .title_hover{
+main .swiper .swiper-wrapper .swiper-slide .e-book.active .title_hover{
     transform: translateY(-100%);
     opacity: 1;
     visibility: visible;
