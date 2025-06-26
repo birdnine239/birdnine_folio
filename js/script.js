@@ -141,6 +141,44 @@ $(function(){
       },
     },
   });
+
+  //슬라이드 배치
+  var swiper = new Swiper(".mySwiper", {
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    breakpoints: {
+      // 모바일: 600px 이하
+      0: {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+        grid: {
+          rows: 2,
+          fill: 'row'
+        }
+      },
+      // 태블릿: 601~1024px
+      601: {
+        slidesPerView: 3,
+        slidesPerGroup: 3,
+        grid: {
+          rows: 3,
+          fill: 'row'
+        }
+      },
+      // 웹: 1025px 이상
+      1025: {
+        slidesPerView: 5,
+        slidesPerGroup: 5,
+        grid: {
+          rows: 2,
+          fill: 'row'
+        }
+      }
+    }
+  });
 });
 
 // iframe의 높이를 자동 조정하는 함수
