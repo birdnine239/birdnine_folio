@@ -133,6 +133,8 @@ $(function(){
 
   //슬라이드 배치
   var swiper = new Swiper(".mySwiper", {
+    loop: false,
+    loopFillGroupWithBlank: false,
     spaceBetween: 30,
     pagination: {
       el: ".swiper-pagination",
@@ -156,7 +158,7 @@ $(function(){
         slidesPerView: 3,
         slidesPerGroup: 3,
         grid: {
-          rows: 3,
+          rows: 2,
           fill: 'row'
         }
       },
