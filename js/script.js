@@ -137,6 +137,9 @@ $(function(){
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + "</span>";
+      },
     },
     breakpoints: {
       // 모바일: 600px 이하
@@ -167,17 +170,6 @@ $(function(){
         }
       }
     }
-  });
-
-  //포트폴리오 swiper
-  var swiper = new Swiper(".mySwiper", {
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
-      },
-    },
   });
 });
 
