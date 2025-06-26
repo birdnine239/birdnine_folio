@@ -18,18 +18,15 @@ main .swiper{
 }
 main .swiper .swiper-wrapper .swiper-slide{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 3%;
     box-sizing: border-box;
 }
 main .swiper .swiper-wrapper .swiper-slide .e-book{
-    width: 18%;
+    width: 100%;
     aspect-ratio: 1 / 1.4445730665343696598864450;
     border: 1px solid gray;
     box-sizing: border-box;
-    margin-bottom: 2.945%;
     position: relative;
     overflow: hidden;
     display: flex;
