@@ -15,6 +15,7 @@ body{
 main .swiper{
     width: 100%;
     height: 100%;
+    overflow: visible;
 }
 main .swiper .swiper-wrapper .swiper-slide{
     display: flex;
@@ -42,8 +43,6 @@ main .swiper .swiper-wrapper .swiper-slide .e-book .title_hover{
     background-color: white;
     background-image: url(../img/Hangul_opacity30.png);
     background-size: 100%;
-    opacity: 0;
-    visibility: hidden;
     box-sizing: border-box;
     padding: 7.5%;
     transition: 0.5s;
@@ -98,6 +97,9 @@ main .swiper .swiper-wrapper .swiper-slide .e-book .title_hover .content .value 
 }
 main .swiper .swiper-wrapper .swiper-slide .e-book .title_hover .content .value .s_value.scroll{
     animation: scroll-left 4s linear infinite;
+}
+main .swiper .swiper-pagination{
+    top: 103%;
 }
 
 .swiper-pagination-bullet{
