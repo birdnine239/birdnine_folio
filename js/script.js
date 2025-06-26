@@ -131,17 +131,6 @@ $(function(){
     });
   });
 
-  //포트폴리오 swiper
-  var swiper = new Swiper(".mySwiper", {
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      renderBullet: function (index, className) {
-        return '<span class="' + className + '">' + (index + 1) + "</span>";
-      },
-    },
-  });
-
   //슬라이드 배치
   var swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,
@@ -178,6 +167,17 @@ $(function(){
         }
       }
     }
+  });
+
+  //포트폴리오 swiper
+  var swiper = new Swiper(".mySwiper", {
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      renderBullet: function (index, className) {
+        return '<span class="' + className + '">' + (index + 1) + "</span>";
+      },
+    },
   });
 });
 
