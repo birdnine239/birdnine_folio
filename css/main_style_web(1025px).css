@@ -13,6 +13,7 @@ body{
     overflow-x: hidden;
     background-image: url(../img/logo_opacity.png);
     background-size: 5%;
+    box-sizing: border-box;
 }
 
 header{
