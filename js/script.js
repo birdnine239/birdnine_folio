@@ -32,11 +32,11 @@ $(function(){
   );
 
   // 가변 폰트 사이즈
-  const divs = document.querySelectorAll('header, .mobile_menu, main, .title_hover, .p_title');
+  const divs = document.querySelectorAll('header, .mobile_menu, main, .title_hover, .p_title, .e-book_title');
 
   divs.forEach(div => {
     const text = div.querySelectorAll('p');
-    const subMenuText = div.querySelectorAll('.sub_menu p, .mobile_sub_menu p');
+    const subMenuText = div.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .e-book_title p');
     const HoverText = div.querySelectorAll('.label, .colon, .value');
     
     const resizeObserver = new ResizeObserver(entries => {
