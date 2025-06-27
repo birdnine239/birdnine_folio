@@ -36,8 +36,8 @@ $(function(){
 
   divs.forEach(div => {
     const text = div.querySelectorAll('p');
-    const subMenuText = div.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .e-book_title h2');
-    const HoverText = div.querySelectorAll('.label, .colon, .value, .e-book_title p');
+    const subMenuText = div.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .e-book_title p');
+    const HoverText = div.querySelectorAll('.label, .colon, .value, .e-book_title h2');
     
     const resizeObserver = new ResizeObserver(entries => {
       for (let entry of entries) {
