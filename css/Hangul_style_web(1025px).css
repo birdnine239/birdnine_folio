@@ -128,9 +128,9 @@ main .swiper .swiper-pagination{
 
 #ebookPopupOverlay{
     width: calc(100% - 40px);
-    height: calc(85.45% - 40px);
+    height: calc(88.45% - 40px);
     position: fixed;
-    top: calc(10% + 20px);
+    top: calc(11.35% + 20px);
     left: calc(0% + 20px);
     background-color: rgba(0,0,0,0.3);
     z-index: 2;
