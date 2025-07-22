@@ -2,7 +2,7 @@ export function renderHangul(container) {
   container.innerHTML = `
     <div class="main_title">
       <div class="title">
-        <img class="title_icon" src="./img/menu/Hangul.png" alt="한글">
+        <img class="title_icon" src="../../img/menu/Hangul.png" alt="한글">
         <p>한 글</p>
       </div>
     </div>
