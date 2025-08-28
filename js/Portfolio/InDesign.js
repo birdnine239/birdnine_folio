@@ -1,112 +1,111 @@
-export function renderHangul(container) {
+import { loadResponsiveCssSet } from '../Portfolio_Css.js';
+
+export function renderInDesign(container) {
+  loadResponsiveCssSet('InDesign');
   container.innerHTML = `
     <div class="main_title">
-      <div class="title">
-        <img class="title_icon" src="./img/menu/Hangul.png" alt="한글">
-        <p>한 글</p>
+      <div class="portfolio_title">
+        <img class="title_icon" src="./img/menu/InDesign.png" alt="InDesign">
+        <p>InDesign</p>
+      </div>
+      <div class="search">
+        <form action="">
+          <input type="text" placeholder="검색어를 입력해 주세요.">
+          <a href="#">
+            <img class="search_icon" src="./img/Portfolio/search_icon.png" alt="돋보기">
+          </a>
+        </form>
       </div>
     </div>
 
     <div class="e-book">
       ${card(
-        'Level-2_EMT_Question_Book',
-        '2급 응급구조사 문제집 - 내지',
-        '서울 소방학교',
-        '190㎜×260㎜',
+        'List_of_Award_Recipients_for_the_110th_Anniversary_Celebration',
+        '창립 110주년 기념 수상자 명단 - 내지',
+        '대한 적십자사',
+        '210㎜×297㎜',
         '1도',
-        '376p',
-        'linear-gradient(to top, #c3c3c3, #3d3d3d)'
-      )}
-      ${card(
-        'Standard_Unit_Cost_for_Light-Framed_Timber_Construction',
-        '경골목조건축 표준 일위대가 - 내지',
-        '국립산림과학원',
-        '190㎜×260㎜',
-        '1도',
-        '108p',
-        'linear-gradient(to top, #f2f6f5, white)'
-      )}
-      ${card(
-        'A_Study_on_Improving_the_Compensation_System_for_Public_Officials',
-        '공무원 보수(임금)체계 개선 방안에 관한 연구 - 내지',
-        '전국 공무원 노동 조합',
-        '190㎜×260㎜',
-        '1도',
-        '464p',
-        'linear-gradient(to top, #ffffff, #6d6d6d)'
-      )}
-      ${card(
-        'Civil_Law_Legal_Terminology',
-        '민법 법률용어 - 내지',
-        '도서출판 지성',
-        '188㎜×257㎜',
-        '1도',
-        '126p',
+        '600p',
         'white'
       )}
       ${card(
-        'Postal_Knowledge(Domestic_and_International_Mail)',
-        '우편상식(국내우편, 국제우편) - 내지',
-        '우정사업본부',
-        '182㎜×257㎜',
+        'A_Bee_Fallen_into_a_Honey_Jar',
+        '꿀통에 빠진 벌 - 내지',
+        '(사)한국 장애인 문인 복지후원회',
+        '130㎜×210㎜',
         '2도',
-        '110p',
+        '144p',
         'white'
       )}
       ${card(
-        'AK_Economics(Practice_Questions_&_Explanations)',
-        'AK 경제학(문제편 & 해설편) - 내지',
-        '도서출판 지성',
-        '188㎜×257㎜',
-        '2도',
-        '문제편 - 452p, 해설편 - 290p',
-        'white'
-      )}
-      ${card(
-        'Safety_Management_Manual_for_Mass_Gathering_Events',
-        '다중운집 행사 안전관리 매뉴얼 - 내지',
-        '경찰청',
-        '187㎜×257㎜',
+        '2015_Korea-Japan_University_Student_Peace_Tour',
+        '2015 한·일대학생 PEACE TOUR - 내지',
+        '(사)평화 나눔회',
+        '210㎜×275㎜',
         '4도',
-        '286p',
+        '44p',
+        '#cccccc'
+      )}
+      ${card(
+        'KT_Business_Card',
+        'KT 명함',
+        'KT',
+        '90㎜×50㎜',
+        '4도',
+        '2p',
         'white'
       )}
       ${card(
-        'Megastudy_Academy_Consultation_Guidebook_for_the_Regular_Repeater_Course',
-        '메가스터디 학원 재수정규반 상담 가이드북 - 내지',
-        '메가스터디 학원',
-        '150㎜×215㎜',
+        'KG_Passone_Business_Card',
+        'KG Passone 명함',
+        'KG Passone',
+        '90㎜×50㎜',
         '4도',
-        '180p',
+        '2p',
         'white'
       )}
       ${card(
-        'Special_Lecture_on_Criminal_Procedure_Case_Law',
-        '형소판례특강 - 내지',
-        '안태영',
-        '188㎜×257㎜',
+        'Individual_Sewage_Treatment_Facility_(Septic_Tank)_-_Tri-Fold_Accordion-Style_Billing_Notice',
+        '개인하수처리시설(정화조) - 병풍 접지 3단 고지서 2종',
+        '성동구청',
+        '177㎜×93㎜',
         '4도',
-        '310p',
-        '#d5dcd5',
-        '편저'
+        '6p',
+        'white'
+      )}
+      ${card(
+        'Saerom_Village_-_Tri-Fold_Roll-Fold_Leaflet',
+        '새롬마을 - 두루마리 접지 3단 리플렛',
+        '새롬마을',
+        '101㎜×210㎜',
+        '4도',
+        '6p',
+        'white',
+        'indd indd_r'
       )}
     </div>
   `;
 
-  // 함수가 존재하면 다시 적용
-  if (typeof syncEbookPairs === 'function') syncEbookPairs();
-  if (typeof applyScrollAnimation === 'function') applyScrollAnimation();
+  // 공통 UI 보정
+  if (typeof reapplyGlobalUIFixes === 'function') reapplyGlobalUIFixes();
+
+  // 이미지 로드 완료 후 다시 실행
+  if (typeof runAfterImagesLoad === 'function') {
+    runAfterImagesLoad(container, () => {
+      if (typeof syncEbookPairs === 'function') syncEbookPairs();
+    });
+  }
 }
 
-// 카드 생성 함수 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, bgColor, labelTitle = '발행처') {
+// 카드 컴포넌트 (HTML 템플릿)
+function card(file, title, publisher, size, print, page, bgColor, extraClass = 'indd') {
   return `
-    <div class="hwp" style="background: ${bgColor};" data-ebook="./e-book/Hwp/${file}.html">
-      <img src="./img/Portfolio/Hwp/${file}.jpg" alt="${title}">
+    <div class="${extraClass}" style="background: ${bgColor};" data-ebook="./e-book/InDesign/${file}.html">
+      <img src="./img/Portfolio/InDesign/${file}.jpg" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">
-          <p class="label">${labelTitle}</p>
+          <p class="label">발행처</p>
           <p class="colon">:</p>
           <p class="value"><span class="s_value">${publisher}</span></p>
         </div>
@@ -123,7 +122,7 @@ function card(file, title, publisher, size, print, page, bgColor, labelTitle = '
         <div class="content">
           <p class="label">페이지</p>
           <p class="colon">:</p>
-          <p class="value">${page}</p>
+          <p class="value"><span class="s_value">${page}</span></p>
         </div>
       </div>
     </div>

@@ -1,20 +1,9 @@
-import { loadResponsiveCssSet } from '../Portfolio_Css.js';
-
-export function renderHangul(container) {
-  loadResponsiveCssSet('Hangul');  // 폴더 이름만 넘김
+export function renderIllustrator(container) {
   container.innerHTML = `
     <div class="main_title">
-      <div class="portfolio_title">
-        <img class="title_icon" src="./img/menu/Hangul.png" alt="한글">
+      <div class="title">
+        <img class="title_icon" src="../../img/menu/Hangul.png" alt="한글">
         <p>한 글</p>
-      </div>
-      <div class="search">
-        <form action="">
-          <input type="text" placeholder="검색어를 입력해 주세요.">
-          <a href="#">
-            <img class="search_icon" src="./img/Portfolio/search_icon.png" alt="돋보기">
-          </a>
-        </form>
       </div>
     </div>
 
@@ -99,27 +88,21 @@ export function renderHangul(container) {
         '4도',
         '310p',
         '#d5dcd5',
-        '<span>편</span>저'
+        '편저'
       )}
     </div>
   `;
 
-  // 공통 UI 보정
-  if (typeof reapplyGlobalUIFixes === 'function') reapplyGlobalUIFixes();
-
-  // 이미지 로드 완료 후 다시 실행
-  if (typeof runAfterImagesLoad === 'function') {
-    runAfterImagesLoad(container, () => {
-      if (typeof syncEbookPairs === 'function') syncEbookPairs();
-    });
-  }
+  // 함수가 존재하면 다시 적용
+  if (typeof syncEbookPairs === 'function') syncEbookPairs();
+  if (typeof applyScrollAnimation === 'function') applyScrollAnimation();
 }
 
 // 카드 생성 함수 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, bgColor, labelTitle = '발행처', extraClass = 'hwp') {
+function card(file, title, publisher, size, print, page, bgColor, labelTitle = '발행처') {
   return `
-    <div class="${extraClass}" style="background: ${bgColor};" data-ebook="./e-book/Hangul/${file}.html">
-      <img src="./img/Portfolio/Hangul/${file}.jpg" alt="${title}">
+    <div class="hwp" style="background: ${bgColor};" data-ebook="./e-book/Hwp/${file}.html">
+      <img src="./img/Portfolio/Hwp/${file}.jpg" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">
@@ -140,7 +123,7 @@ function card(file, title, publisher, size, print, page, bgColor, labelTitle = '
         <div class="content">
           <p class="label">페이지</p>
           <p class="colon">:</p>
-          <p class="value"><span class="s_value">${page}</span></p>
+          <p class="value">${page}</p>
         </div>
       </div>
     </div>
