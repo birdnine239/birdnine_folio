@@ -51,8 +51,8 @@ body{
     width: 50px;
     height: 50px;
     position: absolute;
-    /* top: 50%;
-    transform: translateY(-50%); */
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 3rem;
     background: #ebece7;
     color: #666;
@@ -76,20 +76,17 @@ body{
 }
 
 .flip-container #flipbook{
-    max-width: calc(100% - 150px);
     margin: 0 auto;
 }
 .flip-container #flipbook .page{
     margin: 0 !important;
     padding: 0 !important;
     border: none !important;
+    background: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-.flip-container #flipbook .page canvas{
-    width: auto;
-    height: 100%;
+.flip-container #flipbook .page canvas {
+    width: 100% !important;
+    height: 100% !important;
     display: block;
 }

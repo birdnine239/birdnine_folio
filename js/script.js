@@ -34,14 +34,12 @@ $(function () {
     if (el.matches('.p_title')) el.style.fontSize = `${fontSize}px`;
   }
 
-  // 🔹 전역 ResizeObserver
   window.__fontResizeObserver = window.__fontResizeObserver || new ResizeObserver(entries => {
     for (const entry of entries) {
       applyFontResize(entry.target, entry.contentRect.width);
     }
   });
 
-  // 🔹 관찰 대상 재등록
   window.reapplyFontResize = function () {
     const targets = document.querySelectorAll(
       'menu, .mobile_menu, .main_title, .title_hover, .p_title, .e-book_title'
@@ -85,7 +83,6 @@ $(function () {
 
   window.applyScrollAnimation = () => __applyScrollAnimation_internal();
 
-  // 🔹 hover 시 스크롤 재시작
   $(document).on('mouseenter', '.title_hover', function () {
     $(this).find('.p_title span.scroll, .value .s_value.scroll').each(function () {
       restartScrollAnimation($(this));
@@ -146,38 +143,14 @@ $(function () {
   }
   window.syncEbookPairs = syncEbookPairs;
 
-  /* -------------------- 공통 유틸 -------------------- */
-  // 이미지 로드 후 실행 보장
-  window.runAfterImagesLoad = function (container, callback) {
-    const imgs = container.querySelectorAll('img');
-    if (!imgs.length) {
-      callback();
-      return;
-    }
-    let loaded = 0;
-    const checkDone = () => {
-      loaded++;
-      if (loaded === imgs.length) callback();
-    };
-    imgs.forEach(img => {
-      if (img.complete) {
-        checkDone();
-      } else {
-        img.addEventListener('load', checkDone, { once: true });
-        img.addEventListener('error', checkDone, { once: true });
-      }
-    });
-  };
-
-  // 전역 보정
+  /* -------------------- 전역 보정 -------------------- */
   window.reapplyGlobalUIFixes = function () {
     if (typeof reapplyFontResize === 'function') reapplyFontResize();
     if (typeof applyScrollAnimation === 'function') {
       applyScrollAnimation();
-      setTimeout(applyScrollAnimation, 50); // 안정화 후 재실행
+      setTimeout(applyScrollAnimation, 50);
     }
     if (typeof syncEbookPairs === 'function') {
-      // 즉시 + 지연 실행 (이미지 로드 후 보정)
       syncEbookPairs();
       setTimeout(syncEbookPairs, 200);
       const main = document.querySelector('main');
@@ -187,7 +160,6 @@ $(function () {
     }
   };
 
-  /* -------------------- 이벤트 최적화 -------------------- */
   function scheduleGlobalUI() {
     clearTimeout(window.__globalUITimer);
     window.__globalUITimer = setTimeout(() => {
@@ -197,8 +169,6 @@ $(function () {
 
   window.addEventListener('load', scheduleGlobalUI);
   window.addEventListener('resize', scheduleGlobalUI);
-
-  // 최초 실행
   scheduleGlobalUI();
 });
 
@@ -207,73 +177,53 @@ function openEbookPopup(path) {
   $('#ebookIframe').attr('src', path);
   $('#ebookPopupOverlay').css('display', 'flex');
 }
-
 function closeEbookPopup() {
   $('#ebookPopupOverlay').fadeOut();
   $('#ebookIframe').attr('src', '');
 }
 
-/* -------------------- PDF flip-book (세로 최대 + 페이지 붙이기 + 가로 제한) -------------------- */
-async function buildFlipPages($flip, pdfPath) {
-  const pdf = await pdfjsLib.getDocument(pdfPath).promise;
-  const pageCount = pdf.numPages;
-
-  // 첫 페이지 비율 계산 (세로/가로)
-  const firstPage = await pdf.getPage(1);
-  const vp1 = firstPage.getViewport({ scale: 1 });
-  const pageAspect = vp1.height / vp1.width;
-
-  for (let i = 1; i <= pageCount; i++) {
-    const $page = $('<div class="page"></div>');
-    const canvas = document.createElement('canvas');
-    $page.append(canvas);
-    $flip.append($page);
-
-    const page = await pdf.getPage(i);
-    const vp = page.getViewport({ scale: 1.5 });
-    canvas.width = vp.width;
-    canvas.height = vp.height;
-    await page.render({ canvasContext: canvas.getContext('2d'), viewport: vp }).promise;
-  }
-
-  return pageAspect;
-}
-
+/* -------------------- PDF flip-book -------------------- */
 function sizeFlipbook($flip, pageAspect) {
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
-
-  // flipbook의 최대 가로폭 = 100% - 150px
   const maxFlipWidth = windowWidth - 150;
 
-  // 기본: 세로 기준으로 크기 잡기
-  let pageHeight = windowHeight - 120; // 제목/상단 여백 감안
+  let pageHeight = windowHeight - 120;
   let pageWidth = Math.floor(pageHeight / pageAspect);
   let totalWidth = pageWidth * 2;
 
-  // 가로 제한 초과 시, 가로 기준으로 다시 계산
   if (totalWidth > maxFlipWidth) {
     pageWidth = Math.floor(maxFlipWidth / 2);
     pageHeight = Math.floor(pageWidth * pageAspect);
     totalWidth = pageWidth * 2;
   }
-
-  $flip.width(totalWidth);
-  $flip.height(pageHeight);
-
-  if ($flip.data('isTurn')) {
-    $flip.turn('size', totalWidth, pageHeight);
-  }
+  return { pageWidth, pageHeight, totalWidth };
 }
 
-function whenVisible(el, cb) {
-  if (el.clientWidth > 0) return cb();
-  const iv = setInterval(() => {
-    if (el.clientWidth > 0) {
-      clearInterval(iv);
-      cb();
-    }
-  }, 60);
+async function buildFlipPages($flip, pdf, pageWidth, pageHeight) {
+  const pageCount = pdf.numPages;
+
+  for (let i = 1; i <= pageCount; i++) {
+    const $page = $('<div class="page"></div>').css({
+      width: pageWidth + "px",
+      height: pageHeight + "px"
+    });
+    const canvas = document.createElement('canvas');
+    canvas.width = pageWidth;
+    canvas.height = pageHeight;
+    $page.append(canvas);
+    $flip.append($page);
+
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 1 });
+    const scale = Math.min(pageWidth / viewport.width, pageHeight / viewport.height);
+    const scaledViewport = page.getViewport({ scale });
+
+    await page.render({
+      canvasContext: canvas.getContext('2d'),
+      viewport: scaledViewport
+    }).promise;
+  }
 }
 
 async function setupFlipBook(containerSelector) {
@@ -282,26 +232,40 @@ async function setupFlipBook(containerSelector) {
   const pdfPath = $flip.attr('data-pdf');
   if (!pdfPath) return;
 
-  whenVisible($flip[0], async () => {
-    const pageAspect = await buildFlipPages($flip, pdfPath);
+  // PDF 불러오기
+  const pdf = await pdfjsLib.getDocument(pdfPath).promise;
 
-    // turn.js 초기화
-    $flip.turn({
-      autoCenter: true,
-      display: 'double',
-      gradients: true,
-      elevation: 50
-    });
-    $flip.data('isTurn', true);
+  // 첫 페이지로 원본 비율 추출
+  const firstPage = await pdf.getPage(1);
+  const vp = firstPage.getViewport({ scale: 1 });
+  const pageAspect = vp.height / vp.width;
 
-    // 초기 사이징 + 리사이즈
-    sizeFlipbook($flip, pageAspect);
-    $(window).on('resize', () => sizeFlipbook($flip, pageAspect));
+  // 페이지 크기 계산
+  let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
 
-    // 버튼 연결
-    $('#prevBtn').off('click').on('click', () => $flip.turn('previous'));
-    $('#nextBtn').off('click').on('click', () => $flip.turn('next'));
+  // PDF 페이지 렌더링
+  await buildFlipPages($flip, pdf, pageWidth, pageHeight);
+
+  // turn.js 초기화
+  $flip.turn({
+    width: totalWidth,
+    height: pageHeight,
+    autoCenter: true,
+    display: 'double',
+    gradients: true,
+    elevation: 50
   });
+  $flip.data('isTurn', true);
+
+  // 리사이즈 대응
+  $(window).on('resize', () => {
+    let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
+    $flip.turn('size', totalWidth, pageHeight);
+  });
+
+  // 버튼 연결
+  $('#prevBtn').off('click').on('click', () => $flip.turn('previous'));
+  $('#nextBtn').off('click').on('click', () => $flip.turn('next'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
