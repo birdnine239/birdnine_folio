@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English egg 명함 E-Book</title>
+
+    <link rel="stylesheet" href="../../css/E-Book/e-book_style_web(1025px).css">
+    <link rel="stylesheet" href="../../css/E-Book/e-book_style_tablet(601px-1024px).css"media="(min-width:601px) and (max-width:1024px)">
+    <link rel="stylesheet" href="../../css/E-Book/e-book_style_mobile(600px).css" media="(max-width:600px)">
+
+    <script src="../../js/jquery-3.7.1.js"></script>
+    <script src="../../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <div class="e-book_title">
+        <h2>English egg 명함</h2>
+        <div class="e-book_tp">
+            <p>발행처<span>:</span>English egg</p>
+            <p>판형<span>:</span>210㎜×275㎜</p>
+            <p>인쇄<span>:</span>4도</p>
+            <p>페이지<span>:</span>2p + 칼선</p>
+        </div>
+        <img onclick="parent.closeEbookPopup()" src="../../img/Portfolio/close.png" alt="닫기">
+    </div>
+
+    <div id="loadingMessage">
+        <div class="spinner"></div>
+        <p>E-Book 로딩 중...</p>
+    </div>
+    
+    <div class="flip-container">
+        <button id="prevBtn" class="nav-btn">〈</button>
+        <div id="flipbook" class="flip-book" data-pdf="./English_egg_Business_Card.pdf"></div>
+        <button id="nextBtn" class="nav-btn">〉</button>
+    </div>
+</body>
+</html>
