@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../../css/E-Book/e-book_style_mobile(600px).css" media="(max-width:600px)">
 
     <script src="../../js/jquery-3.7.1.js"></script>
+    <script src="../../js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="../../js/script.js"></script>
 </head>
 <body>
     <div class="e-book_title">
@@ -26,6 +26,11 @@
         <img onclick="parent.closeEbookPopup()" src="../../img/Portfolio/close.png" alt="닫기">
     </div>
 
+    <div id="loadingMessage">
+        <div class="spinner"></div>
+        <p>E-Book 로딩 중...</p>
+    </div>
+    
     <div class="flip-container">
         <button id="prevBtn" class="nav-btn" aria-label="이전">〈</button>
         <div id="flipbook" class="flip-book" data-pdf="./Level-2_EMT_Question_Book.pdf"></div>
