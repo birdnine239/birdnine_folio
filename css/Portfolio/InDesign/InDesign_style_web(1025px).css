@@ -70,7 +70,7 @@ main .e-book{
     top: calc(11.802% + 95px);
 }
 main .e-book .indd{
-    width: calc((100% / 5) - ((30px * 4) / 5));
+    width: calc((100% - (30px * 4)) / 5);
     aspect-ratio: 1 / 1.615414908579466;
     border: 1px solid gray;
     box-sizing: border-box;
@@ -81,7 +81,7 @@ main .e-book .indd{
 }
 
 main .e-book .indd.indd_r{
-    width: calc((((100% / 5) - ((30px * 4) / 5)) * 2) + 30px);
+    width: calc((((100% - (30px * 4)) / 5) * 2) + 30px);
 }
 
 main .e-book .indd img{

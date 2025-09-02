@@ -71,7 +71,7 @@ main .e-book{
 }
 main .e-book .xlsx{
     width: calc((100% - (30px * 2)) / 3);
-    aspect-ratio: 1 / 1.4445730665343696598864450;
+    aspect-ratio: 1 / 1.368265016756896;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;

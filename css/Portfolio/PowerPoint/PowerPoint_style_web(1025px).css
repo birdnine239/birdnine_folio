@@ -71,7 +71,7 @@ main .e-book{
 }
 main .e-book .pptx{
     width: calc((100% - (30px * 4)) / 5);
-    aspect-ratio: 1 / 1.4445730665343696598864450;
+    aspect-ratio: 1 / 1.41423906505113;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;
@@ -131,14 +131,14 @@ main .e-book .pptx .title_hover .content{
     gap: 5px;
 }
 main .e-book .pptx .title_hover .content .label{
-    color: blueviolet;
+    color: blue;
     text-align: center;
 }
 main .e-book .pptx .title_hover .content .label span{
     letter-spacing: 0.8em;
 }
 main .e-book .pptx .title_hover .content .colon{
-    color: blueviolet;
+    color: blue;
 }
 main .e-book .pptx .title_hover .content .value{
     width: 100%;

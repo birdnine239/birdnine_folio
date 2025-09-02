@@ -70,8 +70,8 @@ main .e-book{
     top: calc(11.802% + 95px);
 }
 main .e-book .ai{
-    width: calc((100% - (30px * 2)) / 3);
-    aspect-ratio: 1 / 1.4445730665343696598864450;
+    width: calc((100% - (30px * 4)) / 5);
+    aspect-ratio: 1 / 1.253931425625161;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;
@@ -81,7 +81,7 @@ main .e-book .ai{
 }
 
 main .e-book .ai.ai_r{
-    width: calc((((100% - (30px * 2)) / 3) * 2) + 30px);
+    width: calc((((100% - (30px * 4)) / 5) * 2) + 30px);
 }
 
 main .e-book .ai img{
@@ -108,7 +108,7 @@ main .e-book .ai.ai_r .title_hover{
     right: 0;
 }
 
-main .e-book .ai.active .title_hover{
+main .e-book .ai:hover .title_hover{
     transform: translateY(-100%);
     opacity: 1;
     visibility: visible;
