@@ -6,7 +6,7 @@ export function renderHangul(container) {
     <div class="main_title">
       <div class="portfolio_title">
         <img class="title_icon" src="./img/menu/Hangul.png" alt="한글">
-        <p>한 글</p>
+        <p>한&nbsp;&nbsp;글</p>
       </div>
       <div class="search">
         <form action="">
@@ -26,7 +26,7 @@ export function renderHangul(container) {
         '190㎜×260㎜',
         '1도',
         '376p',
-        'linear-gradient(to top, #c3c3c3, #3d3d3d)'
+        { bgColor: 'linear-gradient(to top, #d5d5d5, #848484)' }
       )}
       ${card(
         'Standard_Unit_Cost_for_Light-Framed_Timber_Construction',
@@ -35,7 +35,7 @@ export function renderHangul(container) {
         '190㎜×260㎜',
         '1도',
         '108p',
-        'linear-gradient(to top, #f2f6f5, white)'
+        { bgColor: 'linear-gradient(to top, #f2f6f5, white)' }
       )}
       ${card(
         'A_Study_on_Improving_the_Compensation_System_for_Public_Officials',
@@ -44,7 +44,7 @@ export function renderHangul(container) {
         '190㎜×260㎜',
         '1도',
         '464p',
-        'linear-gradient(to top, #ffffff, #6d6d6d)'
+        { bgColor: 'linear-gradient(to top, #ffffff, #929292)' }
       )}
       ${card(
         'Civil_Law_Legal_Terminology',
@@ -53,7 +53,6 @@ export function renderHangul(container) {
         '188㎜×257㎜',
         '1도',
         '126p',
-        'white'
       )}
       ${card(
         'Postal_Knowledge(Domestic_and_International_Mail)',
@@ -61,8 +60,7 @@ export function renderHangul(container) {
         '우정사업본부',
         '182㎜×257㎜',
         '2도',
-        '110p',
-        'white'
+        '110p'
       )}
       ${card(
         'AK_Economics(Practice_Questions_&_Explanations)',
@@ -70,8 +68,7 @@ export function renderHangul(container) {
         '도서출판 지성',
         '188㎜×257㎜',
         '2도',
-        '문제편 - 452p, 해설편 - 290p',
-        'white'
+        '문제편 - 452p, 해설편 - 290p'
       )}
       ${card(
         'Safety_Management_Manual_for_Mass_Gathering_Events',
@@ -79,8 +76,7 @@ export function renderHangul(container) {
         '경찰청',
         '187㎜×257㎜',
         '4도',
-        '286p',
-        'white'
+        '286p'
       )}
       ${card(
         'Megastudy_Academy_Consultation_Guidebook_for_the_Regular_Repeater_Course',
@@ -88,8 +84,7 @@ export function renderHangul(container) {
         '메가스터디 학원',
         '150㎜×215㎜',
         '4도',
-        '180p',
-        'white'
+        '180p + 간지 탭 칼선'
       )}
       ${card(
         'Special_Lecture_on_Criminal_Procedure_Case_Law',
@@ -98,8 +93,7 @@ export function renderHangul(container) {
         '188㎜×257㎜',
         '4도',
         '310p',
-        '#d5dcd5',
-        '<span>편</span>저'
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
       )}
     </div>
   `;
@@ -116,10 +110,12 @@ export function renderHangul(container) {
 }
 
 // 카드 생성 함수 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, bgColor, labelTitle = '발행처', extraClass = 'hwp') {
+function card(file, title, publisher, size, print, page, { bgColor = 'white', labelTitle = '발행처', extension = 'jpg', displayMode = 'double', extra = '' } = {}) {
+  const classes = ['hwp', extra].filter(Boolean).join(' ');
+
   return `
-    <div class="${extraClass}" style="background: ${bgColor};" data-ebook="./e-book/Hangul/${file}.html">
-      <img src="./img/Portfolio/Hangul/${file}.jpg" alt="${title}">
+    <div class="${classes}" style="background: ${bgColor};" data-ebook="./e-book/Hangul/${file}.html" data-display="${displayMode}">
+      <img src="./img/Portfolio/Hangul/${file}.${extension}" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">

@@ -107,6 +107,27 @@ $(function () {
   });
 
   /* -------------------- .xxx / .xxx_r 동기화 -------------------- */
+  function waitForImages(container, timeout = 3000) {
+    return new Promise(resolve => {
+      if (!container) return resolve();
+      const imgs = Array.from(container.querySelectorAll('img'));
+      if (!imgs.length) return resolve();
+      let loaded = 0;
+      const done = () => { loaded++; if (loaded >= imgs.length) resolve(); };
+
+      imgs.forEach(img => {
+        if (img.complete && img.naturalWidth !== 0) {
+          done();
+        } else {
+          img.addEventListener('load', done, { once: true });
+          img.addEventListener('error', done, { once: true });
+        }
+      });
+
+      setTimeout(() => resolve(), timeout);
+    });
+  }
+
   function syncEbookPairs() {
     const ebook = document.querySelector('main .e-book');
     if (!ebook) return;
@@ -119,11 +140,20 @@ $(function () {
       });
     });
 
+    Object.keys(map).forEach(k => {
+      const info = map[k];
+      if (info.base.length !== info.r.length) {
+        console.debug(`[syncEbookPairs] mismatch for "${k}": base=${info.base.length}, r=${info.r.length}`);
+      }
+    });
+
     Object.values(map).forEach(({ base, r }) => {
       const n = Math.min(base.length, r.length);
       for (let i = 0; i < n; i++) {
         const left = base[i], right = r[i];
-        right.style.height = `${left.offsetHeight}px`;
+        const lh = left.offsetHeight;
+        right.style.height = `${lh}px`;
+
         const lHover = left.querySelector('.title_hover');
         const rHover = right.querySelector('.title_hover');
         if (lHover && rHover) {
@@ -134,30 +164,47 @@ $(function () {
             paddingTop: cs.paddingTop,
             paddingRight: cs.paddingRight,
             paddingBottom: cs.paddingBottom,
-            paddingLeft: cs.paddingLeft,
-            fontSize: cs.fontSize
+            paddingLeft: cs.paddingLeft
           });
         }
       }
     });
-  }
-  window.syncEbookPairs = syncEbookPairs;
 
-  /* -------------------- 전역 보정 -------------------- */
-  window.reapplyGlobalUIFixes = function () {
-    if (typeof reapplyFontResize === 'function') reapplyFontResize();
     if (typeof applyScrollAnimation === 'function') {
       applyScrollAnimation();
       setTimeout(applyScrollAnimation, 50);
     }
+  }
+  window.syncEbookPairs = syncEbookPairs;
+
+  async function performFullUIAdjustments() {
+    const main = document.querySelector('main');
+    const ebook = main ? main.querySelector('.e-book') : document.querySelector('.e-book');
+
+    await Promise.all([
+      waitForImages(ebook, 4000),
+      (document.fonts ? document.fonts.ready : Promise.resolve())
+    ]);
+
+    await new Promise(r => requestAnimationFrame(() => setTimeout(r, 30)));
+
+    if (typeof reapplyFontResize === 'function') reapplyFontResize();
     if (typeof syncEbookPairs === 'function') {
       syncEbookPairs();
-      setTimeout(syncEbookPairs, 200);
-      const main = document.querySelector('main');
-      if (main && typeof runAfterImagesLoad === 'function') {
-        runAfterImagesLoad(main, () => syncEbookPairs());
-      }
+      await new Promise(r => setTimeout(r, 40));
     }
+    if (typeof applyScrollAnimation === 'function') {
+      applyScrollAnimation();
+      setTimeout(applyScrollAnimation, 80);
+    }
+  }
+
+  window.reapplyGlobalUIFixes = function () {
+    if (typeof applyScrollAnimation === 'function') {
+      applyScrollAnimation();
+      setTimeout(applyScrollAnimation, 50);
+    }
+    performFullUIAdjustments();
   };
 
   function scheduleGlobalUI() {
@@ -174,13 +221,30 @@ $(function () {
 
 /* -------------------- 팝업 전역 함수 -------------------- */
 function openEbookPopup(path) {
-  $('#ebookIframe').attr('src', path);
-  $('#ebookPopupOverlay').css('display', 'flex');
+  $('#loadingMessage').show();
+  $('#ebookIframe')
+    .off('load')
+    .on('load', function () {
+      $('#loadingMessage').fadeOut(300);
+    })
+    .attr('src', path);
+  $('#ebookPopupOverlay').css({ display: 'flex', overflow: 'hidden' });
 }
+
 function closeEbookPopup() {
-  $('#ebookPopupOverlay').fadeOut();
-  $('#ebookIframe').attr('src', '');
+  $('#ebookPopupOverlay').fadeOut(() => {
+    $('#ebookIframe').attr('src', '');
+    $('#ebookPopupOverlay').css('overflow', '');
+    $('#loadingMessage').hide();
+    $('#flipbook').html('');
+  });
 }
+
+$(document).on('click', '#ebookPopupOverlay', function (e) {
+  if (e.target.id === 'ebookPopupOverlay') {
+    closeEbookPopup();
+  }
+});
 
 /* -------------------- PDF flip-book -------------------- */
 function sizeFlipbook($flip, pageAspect) {
@@ -202,6 +266,7 @@ function sizeFlipbook($flip, pageAspect) {
 
 async function buildFlipPages($flip, pdf, pageWidth, pageHeight) {
   const pageCount = pdf.numPages;
+  const pageElements = [];
 
   for (let i = 1; i <= pageCount; i++) {
     const $page = $('<div class="page"></div>').css({
@@ -212,7 +277,6 @@ async function buildFlipPages($flip, pdf, pageWidth, pageHeight) {
     canvas.width = pageWidth;
     canvas.height = pageHeight;
     $page.append(canvas);
-    $flip.append($page);
 
     const page = await pdf.getPage(i);
     const viewport = page.getViewport({ scale: 1 });
@@ -223,7 +287,12 @@ async function buildFlipPages($flip, pdf, pageWidth, pageHeight) {
       canvasContext: canvas.getContext('2d'),
       viewport: scaledViewport
     }).promise;
+
+    pageElements.push($page);
   }
+
+  $flip.append(pageElements);
+  return true;
 }
 
 async function setupFlipBook(containerSelector) {
@@ -232,38 +301,37 @@ async function setupFlipBook(containerSelector) {
   const pdfPath = $flip.attr('data-pdf');
   if (!pdfPath) return;
 
-  // PDF 불러오기
+  const displayMode = $flip.attr('data-display') || 'double';
+
+  $('#loadingMessage').show();
+
   const pdf = await pdfjsLib.getDocument(pdfPath).promise;
 
-  // 첫 페이지로 원본 비율 추출
   const firstPage = await pdf.getPage(1);
   const vp = firstPage.getViewport({ scale: 1 });
   const pageAspect = vp.height / vp.width;
 
-  // 페이지 크기 계산
   let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
 
-  // PDF 페이지 렌더링
   await buildFlipPages($flip, pdf, pageWidth, pageHeight);
 
-  // turn.js 초기화
   $flip.turn({
     width: totalWidth,
     height: pageHeight,
     autoCenter: true,
-    display: 'double',
+    display: displayMode,
     gradients: true,
     elevation: 50
   });
   $flip.data('isTurn', true);
 
-  // 리사이즈 대응
+  $('#loadingMessage').fadeOut(300);
+  
   $(window).on('resize', () => {
     let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
     $flip.turn('size', totalWidth, pageHeight);
   });
 
-  // 버튼 연결
   $('#prevBtn').off('click').on('click', () => $flip.turn('previous'));
   $('#nextBtn').off('click').on('click', () => $flip.turn('next'));
 }

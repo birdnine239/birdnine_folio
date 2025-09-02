@@ -25,8 +25,7 @@ export function renderInDesign(container) {
         '대한 적십자사',
         '210㎜×297㎜',
         '1도',
-        '600p',
-        'white'
+        '600p'
       )}
       ${card(
         'A_Bee_Fallen_into_a_Honey_Jar',
@@ -34,8 +33,7 @@ export function renderInDesign(container) {
         '(사)한국 장애인 문인 복지후원회',
         '130㎜×210㎜',
         '2도',
-        '144p',
-        'white'
+        '144p'
       )}
       ${card(
         '2015_Korea-Japan_University_Student_Peace_Tour',
@@ -44,7 +42,7 @@ export function renderInDesign(container) {
         '210㎜×275㎜',
         '4도',
         '44p',
-        '#cccccc'
+        { bgColor: '#dddddd' }
       )}
       ${card(
         'KT_Business_Card',
@@ -53,7 +51,7 @@ export function renderInDesign(container) {
         '90㎜×50㎜',
         '4도',
         '2p',
-        'white'
+        { displayMode: 'single' }
       )}
       ${card(
         'KG_Passone_Business_Card',
@@ -62,7 +60,7 @@ export function renderInDesign(container) {
         '90㎜×50㎜',
         '4도',
         '2p',
-        'white'
+        { displayMode: 'single' }
       )}
       ${card(
         'Individual_Sewage_Treatment_Facility_(Septic_Tank)_-_Tri-Fold_Accordion-Style_Billing_Notice',
@@ -71,7 +69,7 @@ export function renderInDesign(container) {
         '177㎜×93㎜',
         '4도',
         '6p',
-        'white'
+        { displayMode: 'single' }
       )}
       ${card(
         'Saerom_Village_-_Tri-Fold_Roll-Fold_Leaflet',
@@ -80,8 +78,7 @@ export function renderInDesign(container) {
         '101㎜×210㎜',
         '4도',
         '6p',
-        'white',
-        'indd indd_r'
+        { displayMode: 'single', extra: 'indd_r' }
       )}
     </div>
   `;
@@ -98,10 +95,12 @@ export function renderInDesign(container) {
 }
 
 // 카드 컴포넌트 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, bgColor, extraClass = 'indd') {
+function card(file, title, publisher, size, print, page, { bgColor = 'white', extension = 'jpg', displayMode = 'double', extra = '' } = {}) {
+  const classes = ['indd', extra].filter(Boolean).join(' ');
+
   return `
-    <div class="${extraClass}" style="background: ${bgColor};" data-ebook="./e-book/InDesign/${file}.html">
-      <img src="./img/Portfolio/InDesign/${file}.jpg" alt="${title}">
+    <div class="${classes}" style="background: ${bgColor};" data-ebook="./e-book/InDesign/${file}.html" data-display="${displayMode}">
+      <img src="./img/Portfolio/InDesign/${file}.${extension}" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">
