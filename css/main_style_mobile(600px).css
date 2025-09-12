@@ -104,7 +104,8 @@ main{
 }
 
 .show #show_title{
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
     margin-bottom: 30px;
