@@ -11,6 +11,11 @@
 
     <script src="./js/jquery-3.7.1.js"></script>
     <script src="./js/script.js"></script>
+    <script src="./js/E-Book/popup.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="./js/E-Book/show_flipbook.js"></script>
 </head>
 <body>
     <header>
@@ -23,17 +28,17 @@
         <menu>
             <ul>
                 <li>
-                    <a href="#" data-page="/Who">
+                    <a href="#" data-page="Who">
                         <p>Who?</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-page="/Personality_Type">
+                    <a href="#" data-page="Personality_Type">
                         <p>성격유형</p>
                     </a>
                 </li>
                 <li>
-                    <p>포트폴리오</p>
+                    <p class="portfolio-menu">포트폴리오</p>
                 </li>
             </ul>
 
@@ -41,7 +46,7 @@
             <li>
                 <a href="#" data-page="Portfolio_Hangul">
                     <div class="icon">
-                        <img src="./img/menu/Hangul.png" alt="한글">
+                        <img src="./img/Portfolio/Hangul/Hangul.png" alt="한글">
                     </div>
                     <p>한글</p>
                 </a>
@@ -49,7 +54,7 @@
             <li>
                 <a href="#" data-page="Portfolio_InDesign">
                     <div class="icon">
-                        <img src="./img/menu/InDesign.png" alt="InDesign">
+                        <img src="./img/Portfolio/InDesign/InDesign.png" alt="InDesign">
                     </div>
                     <p>InDesign</p>
                 </a>
@@ -57,7 +62,7 @@
             <li>
                 <a href="#" data-page="Portfolio_PowerPoint">
                     <div class="icon">
-                        <img src="./img/menu/PowerPoint.png" alt="PowerPoint">
+                        <img src="./img/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
                     </div>
                     <p>PowerPoint</p>
                 </a>
@@ -65,7 +70,7 @@
             <li>
                 <a href="#" data-page="Portfolio_Excel">
                     <div class="icon">
-                        <img src="./img/menu/Excel.png" alt="Excel">
+                        <img src="./img/Portfolio/Excel/Excel.png" alt="Excel">
                     </div>
                 <p>Excel</p>
                 </a>
@@ -73,7 +78,7 @@
             <li>
                 <a href="#" data-page="Portfolio_Illustrator">
                     <div class="icon">
-                        <img src="./img/menu/Illustrator.png" alt="Illustrator">
+                        <img src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
                     </div>
                     <p>Illustrator</p>
                 </a>
@@ -81,7 +86,7 @@
             <li>
                 <a href="#" data-page="Portfolio_SketchUP">
                     <div class="icon">
-                        <img src="./img/menu/SketchUP.png" alt="SketchUP">
+                        <img src="./img/Portfolio/SketchUP/SketchUP.png" alt="SketchUP">
                     </div>
                     <p>SketchUP</p>
                 </a>
@@ -89,7 +94,7 @@
             <li>
                 <a href="#" data-page="Portfolio_Stable_Diffusion">
                     <div class="icon">
-                        <img src="./img/menu/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
+                        <img src="./img/Portfolio/Stable_Diffusion/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
                     </div>
                     <p>Stable Diffusion
                         <span>(생성형 AI)</span>
@@ -105,13 +110,13 @@
 
         <ul class="mobile_menu">
             <li>
-                <a href="#" data-page="/Who">
+                <a href="#" data-page="Who">
                     <p>Who?</p>
                 </a>
             </li>
             <hr>
             <li>
-                <a href="#" data-page="/Personality_Type">
+                <a href="#" data-page="Personality_Type">
                     <p>성격유형</p>
                 </a>
             </li>
@@ -123,7 +128,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_Hangul">
                             <div class="icon">
-                                <img src="./img/menu/Hangul.png" alt="한글">
+                                <img src="./img/Portfolio/Hangul/Hangul.png" alt="한글">
                             </div>
                             <p>한글</p>
                         </a>
@@ -132,7 +137,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_InDesign">
                             <div class="icon">
-                                <img src="./img/menu/InDesign.png" alt="InDesign">
+                                <img src="./img/Portfolio/InDesign/InDesign.png" alt="InDesign">
                             </div>
                             <p>InDesign</p>
                         </a>
@@ -141,7 +146,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_PowerPoint">
                             <div class="icon">
-                                <img src="./img/menu/PowerPoint.png" alt="PowerPoint">
+                                <img src="./imG/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
                             </div>
                             <p>PowerPoint</p>
                         </a>
@@ -150,7 +155,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_Excel">
                             <div class="icon">
-                                <img src="./img/menu/Excel.png" alt="Excel">
+                                <img src="./img/Portfolio/Excel/Excel.png" alt="Excel">
                             </div>
                         <p>Excel</p>
                         </a>
@@ -159,7 +164,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_Illustrator">
                             <div class="icon">
-                                <img src="./img/menu/Illustrator.png" alt="Illustrator">
+                                <img src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
                             </div>
                             <p>Illustrator</p>
                         </a>
@@ -168,7 +173,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_SketchUP">
                             <div class="icon">
-                                <img src="./img/menu/SketchUP.png" alt="SketchUP">
+                                <img src="./img/Portfolio/SketchUP/SketchUP.png" alt="SketchUP">
                             </div>
                             <p>SketchUP</p>
                         </a>
@@ -177,7 +182,7 @@
                     <li>
                         <a href="#" data-page="Portfolio_Stable_Diffusion">
                             <div class="icon">
-                                <img src="./img/menu/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
+                                <img src="./img/Portfolio/Stable_Diffusion/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
                             </div>
                             <p>Stable Diffusion <span>(생성형 AI)</span></p>
                         </a>
@@ -191,7 +196,31 @@
     <script type="module" src="./js/main.js"></script>
 
     <div class="show">
-        ‘버드나인’은 학창시절 저의 별명이었습니다. <br> 저의 이름으로 인한 언어유희입니다. <br> 지금부터 이세구의 ‘버드나인 포리오’를 시작하겠습니다.
+        <div id="show_title">
+            <div class="show_title">
+                <p>
+                    <span>‘버드나인’</span>은 학창시절 저의 별명이었습니다. <br> 저의 이름으로 인한 언어유희입니다. <br> 지금부터 <strong>이세구</strong>의 <span>‘버드나인 폴리오’</span>를 시작하겠습니다.
+                </p>
+            </div>
+
+            <div class="download">
+                <a href="./e-book/birdnine_curriculum_vitae_Ver._2025-09-08.pdf" download="이세구_이력서.pdf">
+                    <img src="./img/pdf.png" alt="이력서 다룬로드">
+                </a>
+                <p class="caption">이세구 이력서 <br> Download</p>
+            </div>
+        </div>
+
+        <div id="loadingMessage">
+            <div class="spinner"></div>
+            <p>이력서 로딩 중...</p>
+        </div>
+
+        <div class="flip-container">
+            <button id="prevBtn" class="nav-btn">〈</button>
+            <div id="flipbook" class="flip-book" data-pdf="./e-book/birdnine_curriculum_vitae_Ver._2025-09-08.pdf"></div>
+            <button id="nextBtn" class="nav-btn">〉</button>
+        </div>
     </div>
 
     <div id="ebookPopupOverlay" style="display: none;">
