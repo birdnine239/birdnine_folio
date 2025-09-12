@@ -29,6 +29,7 @@ body{
     box-sizing: border-box;
     gap: 50px;
 }
+
 .e-book_title .e-book_tp p span{
     margin: 0 4px;
 }
@@ -82,7 +83,6 @@ body{
     background: #ebece7;
     color: #666;
     border: none;
-    border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;

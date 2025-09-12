@@ -71,7 +71,7 @@ main .e-book{
 }
 main .e-book .ai{
     width: calc((100% - (30px * 2)) / 3);
-    aspect-ratio: 1 / 1.253931425625161;
+    aspect-ratio: 1 / 1.210191630145226;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;
