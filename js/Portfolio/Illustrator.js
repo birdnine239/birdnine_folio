@@ -1,11 +1,11 @@
-import { loadResponsiveCssSet } from '../Portfolio_Css.js';
+import { loadResponsiveCssSet } from '../css.js';
 
 export function renderIllustrator(container) {
-  loadResponsiveCssSet('Illustrator');  // 폴더 이름만 넘김
+  loadResponsiveCssSet('Illustrator', 'Portfolio');  // 폴더 이름만 넘김
   container.innerHTML = `
     <div class="main_title">
       <div class="portfolio_title">
-        <img class="title_icon" src="./img/menu/Illustrator.png" alt="Illustrator">
+        <img class="title_icon" src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
         <p>Illustrator</p>
       </div>
       <div class="search">
@@ -26,7 +26,7 @@ export function renderIllustrator(container) {
         '44㎜×55㎜',
         '4도',
         '2p + 칼선',
-        { extension: 'png', displayMode: 'single' }
+        { displayMode: 'single' }
       )}
       ${card(
         'Construction_Academy_-_D-Ring_Binder_Casebound',
@@ -52,12 +52,12 @@ export function renderIllustrator(container) {
 }
 
 // 카드 생성 함수 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, { bgColor = 'white', extension = 'jpg', displayMode = 'double', extra = '' } = {}) {
+function card(file, title, publisher, size, print, page, { bgColor = 'white', displayMode = 'double', extra = '' } = {}) {
   const classes = ['ai', extra].filter(Boolean).join(' ');
 
   return `
     <div class="${classes}" style="background: ${bgColor};" data-ebook="./e-book/Illustrator/${file}.html" data-display="${displayMode}">
-      <img src="./img/Portfolio/Illustrator/${file}.${extension}" alt="${title}">
+      <img src="./img/Portfolio/Illustrator/${file}.jpg" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">

@@ -1,11 +1,11 @@
-import { loadResponsiveCssSet } from '../Portfolio_Css.js';
+import { loadResponsiveCssSet } from '../css.js';
 
 export function renderInDesign(container) {
-  loadResponsiveCssSet('InDesign');
+  loadResponsiveCssSet('InDesign', 'Portfolio');  // 폴더 이름만 넘김
   container.innerHTML = `
     <div class="main_title">
       <div class="portfolio_title">
-        <img class="title_icon" src="./img/menu/InDesign.png" alt="InDesign">
+        <img class="title_icon" src="./img/Portfolio/InDesign/InDesign.png" alt="InDesign">
         <p>InDesign</p>
       </div>
       <div class="search">
@@ -95,12 +95,12 @@ export function renderInDesign(container) {
 }
 
 // 카드 컴포넌트 (HTML 템플릿)
-function card(file, title, publisher, size, print, page, { bgColor = 'white', extension = 'jpg', displayMode = 'double', extra = '' } = {}) {
+function card(file, title, publisher, size, print, page, { bgColor = 'white', displayMode = 'double', extra = '' } = {}) {
   const classes = ['indd', extra].filter(Boolean).join(' ');
 
   return `
     <div class="${classes}" style="background: ${bgColor};" data-ebook="./e-book/InDesign/${file}.html" data-display="${displayMode}">
-      <img src="./img/Portfolio/InDesign/${file}.${extension}" alt="${title}">
+      <img src="./img/Portfolio/InDesign/${file}.jpg" alt="${title}">
       <div class="title_hover">
         <p class="p_title"><span>${title}</span></p>
         <div class="content">

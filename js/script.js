@@ -1,21 +1,44 @@
 $(function () {
   /* -------------------- 메뉴 호버 -------------------- */
-  $('menu ul>li').eq(2).hover(
-    function () { $('header .sub_menu').stop().slideDown(); },
+  // 포트폴리오 메뉴에만 서브메뉴 표시 - portfolio-menu 클래스를 가진 요소에만 적용
+  $('.portfolio-menu').hover(
+    function () { 
+      $('header .sub_menu').stop().slideDown(); 
+    },
     function () {
       setTimeout(() => {
-        if (!$('header .sub_menu:hover').length) {
+        if (!$('header .sub_menu:hover').length && !$(this).is(':hover')) {
           $('header .sub_menu').slideUp();
         }
       }, 300);
     }
   );
 
+  // 서브메뉴 자체에 호버했을 때는 유지, 벗어나면 닫기
   $('.sub_menu').hover(
-    function () { $(this).stop().slideDown(); },
-    function () { $(this).slideUp(); }
+    function () { 
+      $(this).stop().slideDown(); 
+    },
+    function () { 
+      $(this).slideUp(); 
+    }
   );
 
+  // 포트폴리오 메뉴를 포함하는 li에 마우스가 올라갔을 때도 서브메뉴 유지
+  $('menu ul li:has(.portfolio-menu)').hover(
+    function () {
+      $('header .sub_menu').stop().slideDown();
+    },
+    function () {
+      setTimeout(() => {
+        if (!$('header .sub_menu:hover').length && !$('.portfolio-menu:hover').length) {
+          $('header .sub_menu').slideUp();
+        }
+      }, 300);
+    }
+  );
+
+  // 모바일 메뉴 호버
   $('.menu_img').hover(
     function () { $('.mobile_menu').stop().slideDown(); },
     function () { $('.mobile_menu').slideUp(); }
@@ -25,12 +48,19 @@ $(function () {
   function applyFontResize(el, width) {
     const fontSize = Math.max(15, Math.min(width / 10, 25));
     el.querySelectorAll('p').forEach(p => p.style.fontSize = `${fontSize}px`);
-    el.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .title_icon, .portfolio_title p, .search, h2')
-      .forEach(p => p.style.fontSize = `${fontSize - 5}px`);
+
     el.querySelectorAll('.label, .colon, .value')
       .forEach(p => p.style.fontSize = `${fontSize - 3}px`);
+    
+    el.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .Who_title p, .Personality_Type_title p, .Personality_Type_explanation p, .title_icon, .portfolio_title p, .search, h2')
+      .forEach(p => p.style.fontSize = `${fontSize - 5}px`);
+    
+    el.querySelectorAll('.show_title p, .ESTJ, .INFP')
+      .forEach(p => p.style.fontSize = `${fontSize - 8}px`);
+
     el.querySelectorAll('.e-book_tp p')
       .forEach(p => p.style.fontSize = `${fontSize - 10}px`);
+
     if (el.matches('.p_title')) el.style.fontSize = `${fontSize}px`;
   }
 
@@ -41,9 +71,7 @@ $(function () {
   });
 
   window.reapplyFontResize = function () {
-    const targets = document.querySelectorAll(
-      'menu, .mobile_menu, .main_title, .title_hover, .p_title, .e-book_title'
-    );
+    const targets = document.querySelectorAll('menu, .mobile_menu, .show_title, .spinner, .Who_title, .Personality_Type_title, .text-left, .text-right, .Personality_Type_explanation, .main_title, .title_hover, .p_title, .e-book_title');
     targets.forEach(t => {
       window.__fontResizeObserver.observe(t);
       applyFontResize(t, t.getBoundingClientRect().width);
@@ -89,21 +117,43 @@ $(function () {
     });
   });
 
-  /* -------------------- 팝업 열기 -------------------- */
-  $(document).on('click', '.e-book [data-ebook]', function (e) {
-    if ($(e.target).closest('.title_hover').length) return;
+  /* -------------------- 텍스트 스크롤 애니메이션 -------------------- */
+  function restartScrollAnimation($el) {
+    $el.removeClass('scroll');
+    void $el[0].offsetWidth;
+    $el.addClass('scroll');
+  }
 
-    const $card = $(this);
-    const ebookPath = $card.data('ebook');
-    if (!ebookPath) return;
+  function __applyScrollAnimation_internal() {
+    $('.value').each(function () {
+      const inner = $(this).find('.s_value');
+      if (!inner.length) return;
+      if (inner[0].scrollWidth > $(this).outerWidth() + 1) {
+        if (!inner.hasClass('scroll')) inner.addClass('scroll');
+        setTimeout(() => restartScrollAnimation(inner), 50);
+      } else {
+        inner.removeClass('scroll');
+      }
+    });
 
-    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (isTouch && !$card.hasClass('active')) {
-      $('.e-book [data-ebook].active').removeClass('active');
-      $card.addClass('active');
-      return;
-    }
-    openEbookPopup(ebookPath);
+    $('.p_title').each(function () {
+      const inner = $(this).find('span');
+      if (!inner.length) return;
+      if (inner[0].scrollWidth > $(this).outerWidth() + 1) {
+        if (!inner.hasClass('scroll')) inner.addClass('scroll');
+        setTimeout(() => restartScrollAnimation(inner), 50);
+      } else {
+        inner.removeClass('scroll');
+      }
+    });
+  }
+
+  window.applyScrollAnimation = () => __applyScrollAnimation_internal();
+
+  $(document).on('mouseenter', '.title_hover', function () {
+    $(this).find('.p_title span.scroll, .value .s_value.scroll').each(function () {
+      restartScrollAnimation($(this));
+    });
   });
 
   /* -------------------- .xxx / .xxx_r 동기화 -------------------- */
@@ -217,125 +267,53 @@ $(function () {
   window.addEventListener('load', scheduleGlobalUI);
   window.addEventListener('resize', scheduleGlobalUI);
   scheduleGlobalUI();
-});
 
-/* -------------------- 팝업 전역 함수 -------------------- */
-function openEbookPopup(path) {
-  $('#loadingMessage').show();
-  $('#ebookIframe')
-    .off('load')
-    .on('load', function () {
-      $('#loadingMessage').fadeOut(300);
-    })
-    .attr('src', path);
-  $('#ebookPopupOverlay').css({ display: 'flex', overflow: 'hidden' });
-}
+  /* -------------------- 좌변/우변 높이 동기화 -------------------- */
+  function adjustDownloadHeight() {
+    const left = document.querySelector('.show #show_title .show_title p');
+    const download = document.querySelector('.show #show_title .download');
+    const caption = document.querySelector('.show #show_title .download .caption');
+    const img = document.querySelector('.show #show_title .download a img');
 
-function closeEbookPopup() {
-  $('#ebookPopupOverlay').fadeOut(() => {
-    $('#ebookIframe').attr('src', '');
-    $('#ebookPopupOverlay').css('overflow', '');
-    $('#loadingMessage').hide();
-    $('#flipbook').html('');
-  });
-}
+    if (!left || !download || !caption || !img) return;
 
-$(document).on('click', '#ebookPopupOverlay', function (e) {
-  if (e.target.id === 'ebookPopupOverlay') {
-    closeEbookPopup();
-  }
-});
+    // 좌변 높이
+    const leftHeight = left.offsetHeight;
 
-/* -------------------- PDF flip-book -------------------- */
-function sizeFlipbook($flip, pageAspect) {
-  const windowHeight = window.innerHeight;
-  const windowWidth = window.innerWidth;
-  const maxFlipWidth = windowWidth - 150;
+    // download 전체 높이를 좌측 p와 동일하게
+    download.style.height = leftHeight + 'px';
 
-  let pageHeight = windowHeight - 120;
-  let pageWidth = Math.floor(pageHeight / pageAspect);
-  let totalWidth = pageWidth * 2;
+    // 캡션 높이 (마진 포함)
+    const cs = getComputedStyle(caption);
+    const captionHeight = caption.offsetHeight + parseFloat(cs.marginTop);
 
-  if (totalWidth > maxFlipWidth) {
-    pageWidth = Math.floor(maxFlipWidth / 2);
-    pageHeight = Math.floor(pageWidth * pageAspect);
-    totalWidth = pageWidth * 2;
-  }
-  return { pageWidth, pageHeight, totalWidth };
-}
-
-async function buildFlipPages($flip, pdf, pageWidth, pageHeight) {
-  const pageCount = pdf.numPages;
-  const pageElements = [];
-
-  for (let i = 1; i <= pageCount; i++) {
-    const $page = $('<div class="page"></div>').css({
-      width: pageWidth + "px",
-      height: pageHeight + "px"
-    });
-    const canvas = document.createElement('canvas');
-    canvas.width = pageWidth;
-    canvas.height = pageHeight;
-    $page.append(canvas);
-
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 1 });
-    const scale = Math.min(pageWidth / viewport.width, pageHeight / viewport.height);
-    const scaledViewport = page.getViewport({ scale });
-
-    await page.render({
-      canvasContext: canvas.getContext('2d'),
-      viewport: scaledViewport
-    }).promise;
-
-    pageElements.push($page);
+    // 이미지 높이 = 좌변 높이 - 캡션 높이
+    const imgHeight = leftHeight - captionHeight;
+    if (imgHeight > 0) {
+      img.style.height = imgHeight + 'px';
+      img.style.width = 'auto';          // 비율 유지
+      img.style.objectFit = 'contain';   // 넘치지 않게
+    }
   }
 
-  $flip.append(pageElements);
-  return true;
-}
+  // 초기 실행 (즉시)
+  adjustDownloadHeight();
 
-async function setupFlipBook(containerSelector) {
-  const $flip = $(containerSelector);
-  if (!$flip.length) return;
-  const pdfPath = $flip.attr('data-pdf');
-  if (!pdfPath) return;
+  // DOM 준비 직후 바로 실행
+  document.addEventListener('DOMContentLoaded', adjustDownloadHeight);
 
-  const displayMode = $flip.attr('data-display') || 'double';
+  // 이미지가 다 로드되면 다시 실행
+  window.addEventListener('load', adjustDownloadHeight);
 
-  $('#loadingMessage').show();
+  // 창 크기 바뀔 때마다 다시 실행
+  window.addEventListener('resize', adjustDownloadHeight);
 
-  const pdf = await pdfjsLib.getDocument(pdfPath).promise;
+  // 폰트 로드 완료 후에도 실행
+  if (document.fonts) {
+    document.fonts.ready.then(adjustDownloadHeight);
+  }
 
-  const firstPage = await pdf.getPage(1);
-  const vp = firstPage.getViewport({ scale: 1 });
-  const pageAspect = vp.height / vp.width;
-
-  let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
-
-  await buildFlipPages($flip, pdf, pageWidth, pageHeight);
-
-  $flip.turn({
-    width: totalWidth,
-    height: pageHeight,
-    autoCenter: true,
-    display: displayMode,
-    gradients: true,
-    elevation: 50
-  });
-  $flip.data('isTurn', true);
-
-  $('#loadingMessage').fadeOut(300);
-  
-  $(window).on('resize', () => {
-    let { pageWidth, pageHeight, totalWidth } = sizeFlipbook($flip, pageAspect);
-    $flip.turn('size', totalWidth, pageHeight);
-  });
-
-  $('#prevBtn').off('click').on('click', () => $flip.turn('previous'));
-  $('#nextBtn').off('click').on('click', () => $flip.turn('next'));
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  setupFlipBook('#flipbook');
+  // 추가적인 안전장치: 짧은 지연 후 재실행
+  setTimeout(adjustDownloadHeight, 100);
+  setTimeout(adjustDownloadHeight, 500);
 });
