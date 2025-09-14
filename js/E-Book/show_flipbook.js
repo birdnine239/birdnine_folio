@@ -15,7 +15,7 @@ function sizeFlipbook($flip, pageAspect) {
 
   // 사용 가능한 높이 (데스크탑 전용)
   const paddingBottom = parseFloat($show.css('padding-bottom')) || 0;
-  let availableHeight = showHeight - pHeight - paddingBottom - 15;
+  let availableHeight = showHeight - pHeight - paddingBottom;
   if (availableHeight < 200) availableHeight = 200;
 
   let pageWidth, pageHeight;

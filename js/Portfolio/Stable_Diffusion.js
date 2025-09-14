@@ -8,6 +8,7 @@ export function renderStable_Diffusion(container) {
         <img class="title_icon" src="./img/Portfolio/Stable_Diffusion/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
         <p>Stable Diffusion (생성형 AI)</p>
       </div>
+      <!--
       <div class="search">
         <form action="">
           <input type="text" placeholder="검색어를 입력해 주세요.">
@@ -16,6 +17,7 @@ export function renderStable_Diffusion(container) {
           </a>
         </form>
       </div>
+      -->
     </div>
 
     <div class="e-book">

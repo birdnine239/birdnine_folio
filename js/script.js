@@ -1,49 +1,4 @@
 $(function () {
-  /* -------------------- 메뉴 호버 -------------------- */
-  // 포트폴리오 메뉴에만 서브메뉴 표시 - portfolio-menu 클래스를 가진 요소에만 적용
-  $('.portfolio-menu').hover(
-    function () { 
-      $('header .sub_menu').stop().slideDown(); 
-    },
-    function () {
-      setTimeout(() => {
-        if (!$('header .sub_menu:hover').length && !$(this).is(':hover')) {
-          $('header .sub_menu').slideUp();
-        }
-      }, 300);
-    }
-  );
-
-  // 서브메뉴 자체에 호버했을 때는 유지, 벗어나면 닫기
-  $('.sub_menu').hover(
-    function () { 
-      $(this).stop().slideDown(); 
-    },
-    function () { 
-      $(this).slideUp(); 
-    }
-  );
-
-  // 포트폴리오 메뉴를 포함하는 li에 마우스가 올라갔을 때도 서브메뉴 유지
-  $('menu ul li:has(.portfolio-menu)').hover(
-    function () {
-      $('header .sub_menu').stop().slideDown();
-    },
-    function () {
-      setTimeout(() => {
-        if (!$('header .sub_menu:hover').length && !$('.portfolio-menu:hover').length) {
-          $('header .sub_menu').slideUp();
-        }
-      }, 300);
-    }
-  );
-
-  // 모바일 메뉴 호버
-  $('.menu_img').hover(
-    function () { $('.mobile_menu').stop().slideDown(); },
-    function () { $('.mobile_menu').slideUp(); }
-  );
-
   /* -------------------- 폰트 크기 적용 -------------------- */
   function applyFontResize(el, width) {
     const fontSize = Math.max(15, Math.min(width / 10, 25));

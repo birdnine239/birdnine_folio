@@ -8,6 +8,7 @@ export function renderHangul(container) {
         <img class="title_icon" src="./img/Portfolio/Hangul/Hangul.png" alt="한글">
         <p>한&nbsp;&nbsp;글</p>
       </div>
+      <!--
       <div class="search">
         <form action="">
           <input type="text" placeholder="검색어를 입력해 주세요.">
@@ -16,6 +17,7 @@ export function renderHangul(container) {
           </a>
         </form>
       </div>
+      -->
     </div>
 
     <div class="e-book">
@@ -85,6 +87,222 @@ export function renderHangul(container) {
         '150㎜×215㎜',
         '4도',
         '180p + 간지 탭 칼선'
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
+      )}
+      ${card(
+        'Special_Lecture_on_Criminal_Procedure_Case_Law',
+        '형소판례특강 - 내지',
+        '안태영',
+        '188㎜×257㎜',
+        '4도',
+        '310p',
+        { bgColor: '#dcd9d2', labelTitle: '<span>편</span>저' }
       )}
       ${card(
         'Special_Lecture_on_Criminal_Procedure_Case_Law',

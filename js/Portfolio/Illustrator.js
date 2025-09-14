@@ -8,6 +8,7 @@ export function renderIllustrator(container) {
         <img class="title_icon" src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
         <p>Illustrator</p>
       </div>
+      <!--
       <div class="search">
         <form action="">
           <input type="text" placeholder="검색어를 입력해 주세요.">
@@ -16,6 +17,7 @@ export function renderIllustrator(container) {
           </a>
         </form>
       </div>
+      -->
     </div>
 
     <div class="e-book">
