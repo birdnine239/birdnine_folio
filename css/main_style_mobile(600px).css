@@ -21,10 +21,10 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding: 15px 5%;
+    padding: 15px 6.39%;
     box-sizing: border-box;
     background-color: #d9d9d9;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 10;
 }
@@ -85,30 +85,26 @@ header .mobile_menu .mobile_sub_menu li a span{
 }
 
 main{
+    display: none;
+}
+
+main, .show{
     width: inherit;
     min-height: 88.198%;
     margin: 0 auto;
     padding: 0 6.39% 30px 6.39%;
     background-color: #d9d9d9;
-    display: none;
-    box-sizing: border-box;
-}
-
-.show{
-    width: inherit;
-    height: 88.198%;
-    margin: 0 auto;
-    padding: 15px 6.39% 30px 6.39%;
-    background-color: #d9d9d9;
+    position: relative;
+    top: 11.802%;
     box-sizing: border-box;
 }
 
 .show #show_title{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: stretch;
     margin-bottom: 30px;
+    padding-top: 15px;
 }
 
 .show #show_title .show_title p{
