@@ -17,16 +17,16 @@ body{
 }
 
 header{
-    width: inherit !important;
+    width: inherit;
     height: 11.802%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: end;
-    padding: 15px 4.473% !important;
+    padding: 15px 4.473%;
     box-sizing: border-box;
     background-color: #d9d9d9;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 100;
 }
@@ -107,7 +107,6 @@ main, .show{
     padding: 0 6.39% 30px 6.39%;
     background-color: #d9d9d9;
     position: relative;
-    top: 11.802%;
     box-sizing: border-box;
 }
 
