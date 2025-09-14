@@ -82,5 +82,4 @@ function card(file, title, publisher, size, print, page, { bgColor = 'white', di
       </div>
     </div>
   `;
-
 }
