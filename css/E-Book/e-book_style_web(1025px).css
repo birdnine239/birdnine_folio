@@ -25,11 +25,13 @@ body{
     width: calc(100% - 1em);
     display: flex;
     align-items: center;
-    margin-top: 0.5%;
+    margin-top: 1%;
     box-sizing: border-box;
-    gap: 50px;
+    gap: 15%;
 }
-
+.e-book_title .e-book_tp p{
+    margin-top: 1%;
+}
 .e-book_title .e-book_tp p span{
     margin: 0 4px;
 }
