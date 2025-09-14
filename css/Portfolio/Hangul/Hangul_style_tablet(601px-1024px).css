@@ -6,7 +6,7 @@ main .main_title{
     top: 11.802%;
     box-sizing: border-box;
     z-index: 1;
-    background-color: #d9d9d9;
+/*     background-color: #d9d9d9; */
 }
 main .main_title .portfolio_title{
     display: flex;
@@ -161,4 +161,5 @@ main .e-book .hwp .title_hover .content .value .s_value.scroll{
     100%{
         transform: translateX(-100%);
     }
+
 }
