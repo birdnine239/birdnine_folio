@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-stretch: condensed;
+    letter-spacing: -0.06em;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+header{
+    width: inherit;
+    height: 11.802%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 15px 6.39%;
+    box-sizing: border-box;
+    background-color: #d9d9d9;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+header .logo{
+    height: 100%;
+    margin-right: 8.407%;
+}
+header .logo img{
+    height: 100%;
+}
+header menu{
+    width: 50%;
+    box-sizing: border-box;
+}
+header menu ul{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+header menu ul li a{
+    text-decoration: none;
+    color: inherit;
+}
+header menu .sub_menu{
+    list-style: none;
+    padding: 0 30px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 3px gray;
+    border-radius: 0 0 20px 20px;
+    background-color: #d9d9d9;
+    position: absolute;
+    top: 90%;
+    right: 1%;
+    display: none;
+}
+
+header menu .sub_menu li{
+    margin: 30px 0;
+}
+header menu .sub_menu li a{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+header menu .sub_menu li a .icon{
+    width: 30px;
+    margin-right: 15px;
+}
+header menu .sub_menu li a .icon img{
+    width: 100%;
+}
+header menu .sub_menu li a span{
+    font-size: 0.5em;
+    padding-top: 0.5em;
+}
+
+header .menu_img{
+    height: 100%;
+    display: none;
+}
+header .menu_img img{
+    height : 100%;
+}
+
+header .mobile_menu{
+    display: none;
+}
+
+main{
+    display: none;
+}
+
+main, .show{
+    width: inherit;
+    min-height: 88.198%;
+    margin: 0 auto;
+    padding: 0 6.39% 30px 6.39%;
+    background-color: #d9d9d9;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.show #show_title{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 30px;
+    padding-top: 15px;
+}
+
+.show #show_title .show_title p{
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+.show #show_title .show_title p span{
+    color: blueviolet;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.show #show_title .show_title p strong{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.show #show_title .download{
+    display: block;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.show #show_title .download .caption{
+    width: 100%;
+    font-size: 10px;
+    line-height: 1;
+    text-align: center;
+    margin-top: 3px;
+}
+.show #show_title .download a{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+.show #show_title .download a img{
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+#ebookPopupOverlay{
+    width: calc(100% - 6.39%);
+    height: calc(88.198% - 95px);
+    margin: 0 auto;
+    position: fixed;
+    inset: 0;
+    top: calc(11.802% + 80px);
+    background-color: rgba(0,0,0,0.3);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+#ebookPopupOverlay .popupContent{
+    width: calc(100% - 50px);
+    height: calc(100% - 50px);
+    background-color: #ebece7;
+    box-shadow: 0 0 5px black;
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+#ebookPopupOverlay .popupContent #ebookIframe{
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    border: none;
+    position: relative;
+    top: 30px;
+    left: 30px;
+}
+
+/* 이력서 */
+#loadingMessage{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: white;
+  background: rgba(0,0,0,0.6);
+  padding: 20px 30px;
+  border-radius: 12px;
+  display: none; /* 기본 숨김 */
+  text-align: center;
+  z-index: 1000;
+}
+#loadingMessage .spinner{
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px auto;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.flip-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;   /* 모바일/태블릿에서 세로 스크롤 */
+    overflow-x: hidden; /* 가로 스크롤 방지 */
+    -webkit-overflow-scrolling: touch; /* iOS 부드러운 스크롤 */
+}
+.flip-container .nav-btn{
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    background: #d9d9d9;
+    color: #666;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+.flip-container .nav-btn:hover{
+    color: rgba(0,0,0,0.6);
+}
+
+.flip-container #prevBtn{
+    left: -25px;
+}
+.flip-container #nextBtn{
+    right: -25px;
+}
+
+.flip-container #flipbook{
+    margin: 0 auto;
+}
+.flip-container #flipbook .page{
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.flip-container #flipbook .page canvas{
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
