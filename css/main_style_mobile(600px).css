@@ -101,7 +101,8 @@ main, .show{
 
 .show #show_title{
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: right;
     align-items: stretch;
     margin-bottom: 30px;
     padding-top: 15px;
@@ -141,7 +142,7 @@ main, .show{
     box-sizing: border-box;
 }
 .show #show_title .download a img{
-    width: auto;
+    width: 100%;
     height: auto;
     object-fit: contain;
     display: block;
