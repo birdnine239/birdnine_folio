@@ -5,7 +5,7 @@ export function renderPowerPoint(container) {
   container.innerHTML = `
     <div class="main_title">
       <div class="portfolio_title">
-        <img class="title_icon" src="./imG/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
+        <img class="title_icon" src="./img/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
         <p>PowerPoint</p>
       </div>
       <!--
@@ -82,4 +82,5 @@ function card(file, title, publisher, size, print, page, { bgColor = 'white', di
       </div>
     </div>
   `;
+
 }
