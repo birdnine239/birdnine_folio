@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버드나인 Folio</title>
+
+    <link rel="stylesheet" href="./css/main_style_web(1025px).css">
+    <link rel="stylesheet" href="./css/main_style_tablet(601px-1024px).css" media="(min-width:601px) and (max-width:1024px)">
+    <link rel="stylesheet" href="./css/main_style_mobile(600px).css" media="(max-width:600px)">
+
+    <script src="./js/jquery-3.7.1.js"></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/menu_hover.js"></script>
+    <script src="./js/E-Book/popup.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/turn.js/3/turn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="./js/E-Book/show_flipbook.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html">
+                <img src="./img/logo.png" alt="logo">
+            </a>
+        </div>
+        
+        <menu>
+            <ul>
+                <li>
+                    <a href="#" data-page="Who">
+                        <p>Who?</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-page="Personality_Type">
+                        <p>성격유형</p>
+                    </a>
+                </li>
+                <li>
+                    <p class="portfolio-menu">포트폴리오</p>
+                </li>
+            </ul>
+
+            <ul class="sub_menu">
+            <li>
+                <a href="#" data-page="Portfolio_Hangul">
+                    <div class="icon">
+                        <img src="./img/Portfolio/Hangul/Hangul.png" alt="한글">
+                    </div>
+                    <p>한글</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_InDesign">
+                    <div class="icon">
+                        <img src="./img/Portfolio/InDesign/InDesign.png" alt="InDesign">
+                    </div>
+                    <p>InDesign</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_PowerPoint">
+                    <div class="icon">
+                        <img src="./img/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
+                    </div>
+                    <p>PowerPoint</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_Excel">
+                    <div class="icon">
+                        <img src="./img/Portfolio/Excel/Excel.png" alt="Excel">
+                    </div>
+                <p>Excel</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_Illustrator">
+                    <div class="icon">
+                        <img src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
+                    </div>
+                    <p>Illustrator</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_SketchUP">
+                    <div class="icon">
+                        <img src="./img/Portfolio/SketchUP/SketchUP.png" alt="SketchUP">
+                    </div>
+                    <p>SketchUP</p>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="Portfolio_Stable_Diffusion">
+                    <div class="icon">
+                        <img src="./img/Portfolio/Stable_Diffusion/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
+                    </div>
+                    <p>Stable Diffusion
+                        <span>(생성형 AI)</span>
+                    </p>
+                </a>
+            </li>
+        </ul>
+        </menu>
+        
+        <div class="menu_img">
+            <img src="./img/Menu/menu.png" alt="menu_icon">
+        </div>
+
+        <ul class="mobile_menu">
+            <li>
+                <a href="#" data-page="Who">
+                    <p>Who?</p>
+                </a>
+            </li>
+            <hr>
+            <li>
+                <a href="#" data-page="Personality_Type">
+                    <p>성격유형</p>
+                </a>
+            </li>
+            <hr>
+            <li>
+                <p>포트폴리오</p>
+                <hr>
+                <ul class="mobile_sub_menu">
+                    <li>
+                        <a href="#" data-page="Portfolio_Hangul">
+                            <div class="icon">
+                                <img src="./img/Portfolio/Hangul/Hangul.png" alt="한글">
+                            </div>
+                            <p>한글</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_InDesign">
+                            <div class="icon">
+                                <img src="./img/Portfolio/InDesign/InDesign.png" alt="InDesign">
+                            </div>
+                            <p>InDesign</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_PowerPoint">
+                            <div class="icon">
+                                <img src="./img/Portfolio/PowerPoint/PowerPoint.png" alt="PowerPoint">
+                            </div>
+                            <p>PowerPoint</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_Excel">
+                            <div class="icon">
+                                <img src="./img/Portfolio/Excel/Excel.png" alt="Excel">
+                            </div>
+                        <p>Excel</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_Illustrator">
+                            <div class="icon">
+                                <img src="./img/Portfolio/Illustrator/Illustrator.png" alt="Illustrator">
+                            </div>
+                            <p>Illustrator</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_SketchUP">
+                            <div class="icon">
+                                <img src="./img/Portfolio/SketchUP/SketchUP.png" alt="SketchUP">
+                            </div>
+                            <p>SketchUP</p>
+                        </a>
+                    </li>
+                    <hr>
+                    <li>
+                        <a href="#" data-page="Portfolio_Stable_Diffusion">
+                            <div class="icon">
+                                <img src="./img/Portfolio/Stable_Diffusion/Stable_Diffusion.png" alt="Stable Diffusion (생성형 AI)">
+                            </div>
+                            <p>Stable Diffusion <span>(생성형 AI)</span></p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <main></main>
+    <script type="module" src="./js/main.js"></script>
+
+    <div class="show">
+        <div id="show_title">
+            <div class="show_title">
+                <p>
+                    <span>‘버드나인’</span>은 학창시절 저의 별명이었습니다. <br> 저의 이름으로 인한 언어유희입니다. <br> 지금부터 <strong>이세구</strong>의 <span>‘버드나인 폴리오’</span>를 시작하겠습니다.
+                </p>
+            </div>
+
+            <div class="download">
+                <a href="./pdf/birdnine_curriculum_vitae_Ver._2025-09-08.pdf" download="이세구_이력서.pdf">
+                    <img src="./img/pdf.png" alt="이력서 다룬로드">
+                </a>
+                <p class="caption">이세구 이력서 <br> Download</p>
+            </div>
+        </div>
+
+        <div id="loadingMessage">
+            <div class="spinner"></div>
+            <p>이력서 로딩 중...</p>
+        </div>
+
+        <div class="flip-container">
+            <button id="prevBtn" class="nav-btn">〈</button>
+            <div id="flipbook" class="flip-book" data-pdf="./pdf/birdnine_curriculum_vitae_Ver._2025-09-08.pdf"></div>
+            <button id="nextBtn" class="nav-btn">〉</button>
+        </div>
+    </div>
+
+    <div id="ebookPopupOverlay" style="display: none;">
+        <div class="popupContent">
+            <iframe id="ebookIframe" src="" scrolling="no"></iframe>
+        </div>
+    </div>
+</body>
+</html>
