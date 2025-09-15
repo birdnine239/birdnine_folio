@@ -69,8 +69,8 @@ main .e-book{
     position: relative;
 }
 main .e-book .skp{
-    width: calc((100% - (30px * 1)) / 2);
-    aspect-ratio: 1 / 1.4445730665343696598864450;
+    width: calc((100% - (30px * 0)) / 1);
+    aspect-ratio: 1 / 0.9;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;
@@ -80,7 +80,7 @@ main .e-book .skp{
 }
 
 main .e-book .skp.skp_r{
-    width: calc((((100% - (30px * 1)) / 2) * 2) + 30px);
+    width: calc((((100% - (30px * 0)) / 1) * 2) + 30px);
 }
 
 main .e-book .skp img{
@@ -130,14 +130,14 @@ main .e-book .skp .title_hover .content{
     gap: 5px;
 }
 main .e-book .skp .title_hover .content .label{
-    color: blueviolet;
+    color: blue;
     text-align: center;
 }
 main .e-book .skp .title_hover .content .label span{
     letter-spacing: 0.8em;
 }
 main .e-book .skp .title_hover .content .colon{
-    color: blueviolet;
+    color: blue;
 }
 main .e-book .skp .title_hover .content .value{
     width: 100%;

@@ -5,8 +5,8 @@ function sizeFlipbook($flip, pageAspect, displayMode = 'double') {
   
   // single 모드와 double 모드에 따라 최대 너비 계산
   const maxFlipWidth = displayMode === 'single' 
-    ? windowWidth - 150  // single 모드: 전체 화면 너비 활용
-    : windowWidth - 150; // double 모드: 기존과 동일
+    ? windowWidth - 100  // single 모드: 전체 화면 너비 활용
+    : windowWidth - 100; // double 모드: 기존과 동일
 
   let pageHeight = windowHeight - 120;
   let pageWidth = Math.floor(pageHeight / pageAspect);
@@ -108,6 +108,59 @@ async function setupFlipBook(containerSelector) {
   $('#nextBtn').off('click').on('click', () => $flip.turn('next'));
 }
 
+function adjustFlipContainerHeight() {
+    const popupContent = parent.document.querySelector('.popupContent');
+    const titleElement = document.querySelector('.e-book_title');
+    const flipContainer = document.querySelector('.flip-container');
+    
+    if (!popupContent || !titleElement || !flipContainer) return;
+
+    const popupHeight = popupContent.offsetHeight;
+    const titleHeight = titleElement.offsetHeight;
+    const popupPadding = 60; // 30px top + 30px bottom
+    const titleMarginBottom = 15;
+    
+    const containerHeight = popupHeight - popupPadding - titleHeight - titleMarginBottom;
+    flipContainer.style.height = `${containerHeight}px`;
+}
+
+// DOM이 로드된 후 높이 조정
+document.addEventListener('DOMContentLoaded', () => {
+    adjustFlipContainerHeight();
+    
+    // 타이틀 높이 변화 감지
+    const resizeObserver = new ResizeObserver(() => {
+        adjustFlipContainerHeight();
+    });
+    
+    const titleElement = document.querySelector('.e-book_title');
+    if (titleElement) {
+        resizeObserver.observe(titleElement);
+    }
+    
+    // 윈도우 리사이즈시 높이 재조정
+    window.addEventListener('resize', adjustFlipContainerHeight);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   setupFlipBook('#flipbook');
+});
+
+function adjustContainerToPdfSize(pdf) {
+    const viewport = pdf.getPage(1).then(page => {
+        const viewport = page.getViewport({ scale: 1 });
+        const container = document.querySelector('.flip-container');
+        const flipbook = document.querySelector('#flipbook');
+        
+        // PDF 높이에 맞춰 컨테이너 크기 조정
+        const containerHeight = viewport.height;
+        container.style.height = `${containerHeight}px`;
+        flipbook.style.height = `${containerHeight}px`;
+    });
+}
+
+// PDF 로드 후 크기 조정 추가
+pdfjsLib.getDocument(pdfPath).promise.then(pdf => {
+    // ...existing PDF loading code...
+    adjustContainerToPdfSize(pdf);
 });

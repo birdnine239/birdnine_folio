@@ -22,13 +22,13 @@ export function renderSketchUP(container) {
 
     <div class="e-book">
       ${card(
-        '2013_Statistical_Yearbook_of_Regional_Medical_Utilization_(Volumes_1~4)',
+        'Gimpo_Nusan-ri_Farmhouse',
         '김포 누산리 농가 주택',
         '1 / 100',
-        '1층 - 105㎡, 2층 - 42㎡',
+        '1층 - 105㎡, 2층 - 42㎡'
       )}
       ${card(
-        '2013_Statistical_Yearbook_of_Regional_Medical_Utilization_(Volumes_1~4)',
+        'Country_House_Type_C',
         '전원주택 C형',
         '1 / 78',
         '㎡'

@@ -10,6 +10,7 @@ body{
     width: 100%;
     margin: 0 auto;
     overflow-x: hidden;
+    flex-direction: column;
 }
 
 .e-book_title{
@@ -70,11 +71,11 @@ body{
 }
 
 .flip-container{
-    height: calc(100vh - 56.19px);
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    flex: 1;
 }
 .flip-container .nav-btn{
     width: 50px;
@@ -117,4 +118,9 @@ body{
     width: 100% !important;
     height: 100% !important;
     display: block;
+}
+
+.flip-container video{
+    width: 100%;
+    object-fit: contain;
 }
