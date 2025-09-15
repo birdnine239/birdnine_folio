@@ -75,6 +75,7 @@ body{
     align-items: center;
     position: relative;
     flex: 1;
+    background-color: aqua;
 }
 .flip-container .nav-btn{
     width: 50px;
@@ -122,4 +123,5 @@ body{
 .flip-container video{
     width: 100%;
     object-fit: contain;
+
 }
