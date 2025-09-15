@@ -50,21 +50,21 @@ export function renderWhho(container) {
             </div>
 
             <div class="contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents01.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents02.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents03.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents04.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents05.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents06.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents07.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents08.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents09.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents10.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents11.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents12.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents13.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents14.png" alt="컴퓨터 활용능력 Contents">
-                <img src="./img/Menu/Who/Computer_Skills_contents15.png" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents01.png" title="Illustrator" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents02.png" title="Photoshop" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents03.png" title="InDesign" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents04.png" title="Premiere Pro" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents05.png" title="After Effects" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents06.png" title="Acrobat" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents07.png" title="한글" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents08.png" title="SketchUP" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents09.png" title="PowerPoint" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents10.png" title="Excel" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents11.png" title="Word" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents12.png" title="Stable Diffusion" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents13.png" title="windows" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents14.png" title="Internet Browser" alt="컴퓨터 활용능력 Contents">
+                <img src="./img/Menu/Who/Computer_Skills_contents15.png" title="HTML" alt="컴퓨터 활용능력 Contents">
             </div>
         </div>
     </div>

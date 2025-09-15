@@ -26,7 +26,7 @@ $(function () {
   });
 
   window.reapplyFontResize = function () {
-    const targets = document.querySelectorAll('menu, .mobile_menu, .show_title, .spinner, .Who_title, .Personality_Type_title, .text-left, .text-right, .Personality_Type_explanation, .main_title, .title_hover, .p_title, .e-book_title');
+    const targets = document.querySelectorAll('menu, .mobile_menu, .show_title, .loadingMessage, .Who_title, .Personality_Type_title, .text-left, .text-right, .Personality_Type_explanation, .main_title, .title_hover, .p_title, .e-book_title');
     targets.forEach(t => {
       window.__fontResizeObserver.observe(t);
       applyFontResize(t, t.getBoundingClientRect().width);
