@@ -28,10 +28,10 @@ export function renderSketchUP(container) {
         '1층 - 105㎡, 2층 - 42㎡'
       )}
       ${card(
-        'Country_House_Type_C',
-        '전원주택 C형',
-        '1 / 78',
-        '㎡'
+        'HO_Series_Country_House_Type_C',
+        'HO시리즈 전원주택 C형',
+        '1 / 87',
+        '1층 - 165㎡, 2층 - 105.6㎡'
       )}
     </div>
   `;
