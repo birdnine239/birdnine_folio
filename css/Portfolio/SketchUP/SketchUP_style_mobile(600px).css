@@ -70,7 +70,7 @@ main .e-book{
 }
 main .e-book .skp{
     width: calc((100% - (30px * 0)) / 1);
-    aspect-ratio: 1 / 0.9;
+    aspect-ratio: 1 / 0.5620661071391566;
     border: 1px solid gray;
     box-sizing: border-box;
     position: relative;
@@ -87,7 +87,7 @@ main .e-book .skp img{
     width: 100%;
 }
 main .e-book .skp .title_hover{
-    width: 100%;
+    width: 50%;
     height: 50%;
     background-color: white;
     background-image: url(../../../img/Portfolio/SketchUP/SketchUP_opacity30.png);
@@ -101,9 +101,6 @@ main .e-book .skp .title_hover{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-main .e-book .skp.skp_r .title_hover{
     right: 0;
 }
 
