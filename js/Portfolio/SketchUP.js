@@ -64,7 +64,7 @@ function card(file, title, scale, area, { bgColor = 'white', extra = '' } = {}) 
         <div class="content">
           <p class="label"><span>면</span>적</p>
           <p class="colon">:</p>
-          <p class="value">${area}</p>
+          <p class="value"><span class="s_value">${area}</span></p>
         </div>
       </div>
     </div>
