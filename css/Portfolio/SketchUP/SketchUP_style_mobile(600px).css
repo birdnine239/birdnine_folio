@@ -93,7 +93,7 @@ main .e-book .skp .title_hover{
     background-image: url(../../../img/Portfolio/SketchUP/SketchUP_opacity30.png);
     background-size: 100%;
     box-sizing: border-box;
-    padding: 7.5%;
+    padding: 5%;
     transition: 0.5s;
     position: absolute;
     bottom: -50%;
