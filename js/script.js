@@ -10,7 +10,7 @@ $(function () {
     el.querySelectorAll('.sub_menu p, .mobile_sub_menu p, .Who_title p, .Personality_Type_title p, .Personality_Type_explanation p, .title_icon, .portfolio_title p, .search, h2')
       .forEach(p => p.style.fontSize = `${fontSize - 5}px`);
     
-    el.querySelectorAll('.show_title p, .ESTJ, .INFP')
+    el.querySelectorAll('.ps, .ESTJ, .INFP')
       .forEach(p => p.style.fontSize = `${fontSize - 8}px`);
 
     el.querySelectorAll('.e-book_tp p')
