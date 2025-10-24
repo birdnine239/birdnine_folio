@@ -110,15 +110,17 @@ main, .show{
 
 .show #show_title{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     margin-bottom: 30px;
     padding-top: 15px;
 }
 
 .show #show_title .show_title p{
-    line-height: 1.4;
+    line-height: 1.6;
     box-sizing: border-box;
+    text-align: center;
+    margin-top: 10%;
 }
 .show #show_title .show_title p span{
     color: blueviolet;
@@ -129,6 +131,10 @@ main, .show{
 .show #show_title .show_title p strong{
     font-size: 1.1em;
     font-weight: bold;
+}
+
+.show #show_title .show_title .ps{
+    text-align: right;
 }
 
 .show #show_title .download{
